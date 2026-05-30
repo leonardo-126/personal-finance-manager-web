@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import { ApiError, setUnauthorizedHandler } from "@/lib/api";
-import { authService } from "@/services/api";
+import { authService } from "@/Services/api";
 import type {
   AuthContextValue,
   LoginCredentials,

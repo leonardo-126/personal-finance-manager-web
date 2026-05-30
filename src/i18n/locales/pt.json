@@ -1,0 +1,86 @@
+{
+  "home": {
+    "badge": "Sua vida financeira sob controle",
+    "title": "Organize suas finanças e conquiste seus objetivos",
+    "description": "Acompanhe receitas e despesas, crie orçamentos e visualize para onde seu dinheiro vai. Tudo em um só lugar, de forma simples e segura.",
+    "ctaPrimary": "Comece de graça",
+    "ctaSecondary": "Já tenho conta",
+    "features": {
+      "title": "Tudo o que você precisa para cuidar do seu dinheiro",
+      "subtitle": "Uma plataforma completa construída em torno de como você realmente lida com suas finanças.",
+      "trackTitle": "Controle de gastos",
+      "trackDescription": "Registre receitas e despesas e saiba exatamente para onde vai cada centavo.",
+      "budgetTitle": "Orçamentos inteligentes",
+      "budgetDescription": "Defina limites por categoria e evite gastar mais do que planejou.",
+      "goalsTitle": "Metas financeiras",
+      "goalsDescription": "Crie objetivos de poupança e acompanhe seu progresso até alcançá-los.",
+      "reportsTitle": "Relatórios e insights",
+      "reportsDescription": "Visualize gráficos claros sobre seus hábitos e tome decisões melhores.",
+      "alertsTitle": "Alertas e lembretes",
+      "alertsDescription": "Receba avisos de contas a vencer e quando ultrapassar seu orçamento.",
+      "securityTitle": "Segurança em primeiro lugar",
+      "securityDescription": "Seus dados protegidos com criptografia e os mais altos padrões de segurança."
+    },
+    "cta": {
+      "title": "Pronto para assumir o controle?",
+      "description": "Organize sua vida financeira e dê o primeiro passo para realizar seus objetivos.",
+      "button": "Criar conta gratuita"
+    }
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "description": "A página que você procura não existe ou foi movida.",
+    "backHome": "Voltar ao início"
+  },
+  "navbar": {
+    "brand": "Finanças",
+    "home": "Início",
+    "courses": "Cursos",
+    "pricing": "Preços",
+    "login": "Entrar",
+    "signup": "Cadastrar"
+  },
+  "sidebar": {
+    "dashboard": "Painel",
+    "myFinances": "Minhas Finanças",
+    "progress": "Progresso",
+    "settings": "Configurações",
+    "logout": "Sair"
+  },
+  "authNavbar": {
+    "profile": "Perfil",
+    "settings": "Configurações",
+    "logout": "Sair"
+  },
+  "login": {
+    "title": "Entrar na sua conta",
+    "description": "Insira seu email abaixo para acessar sua conta",
+    "email": "Email",
+    "password": "Senha",
+    "forgotPassword": "Esqueceu sua senha?",
+    "submit": "Entrar",
+    "submitting": "Entrando...",
+    "genericError": "Falha ao entrar. Tente novamente.",
+    "noAccount": "Não tem uma conta?",
+    "signupLink": "Cadastre-se"
+  },
+  "signup": {
+    "title": "Crie sua conta",
+    "description": "Preencha o formulário abaixo para criar sua conta",
+    "name": "Nome completo",
+    "namePlaceholder": "João Silva",
+    "email": "Email",
+    "emailDescription": "Usaremos este email para contato. Não compartilharemos com ninguém.",
+    "password": "Senha",
+    "passwordDescription": "Deve ter pelo menos 8 caracteres.",
+    "password_confirmation": "Confirmar senha",
+    "password_confirmationDescription": "Por favor, confirme sua senha.",
+    "submit": "Criar conta",
+    "submitting": "Criando conta...",
+    "passwordMismatch": "As senhas não coincidem.",
+    "genericError": "Falha ao criar conta. Tente novamente.",
+    "orContinueWith": "Ou continue com",
+    "hasAccount": "Já tem uma conta?",
+    "loginLink": "Entrar"
+  }
+}
