@@ -4,6 +4,7 @@ import Login from "@/pages/auth/login";
 import Signup from "@/pages/auth/signup";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/NotFound";
+import Profile from "@/pages/pages/Profile";
 import ProtectedRoute from "@/routes/ProtectedRoute";
 import { Route, Routes } from "react-router-dom";
 
@@ -20,6 +21,7 @@ export default function AppRoutes() {
       <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<AuthLayout />}>
           {/* <Route index element={<Dashboard />} /> */}
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Route>
 

@@ -64,6 +64,31 @@
     "noAccount": "Não tem uma conta?",
     "signupLink": "Cadastre-se"
   },
+  "profile": {
+    "title": "Perfil",
+    "loading": "Carregando perfil...",
+    "loadError": "Não foi possível carregar o perfil. Tente novamente.",
+    "edit": "Editar",
+    "emptyBio": "Nenhuma bio adicionada ainda.",
+    "createTitle": "Criar perfil",
+    "createDescription": "Adicione uma bio e uma foto para completar seu perfil.",
+    "editTitle": "Editar perfil",
+    "editDescription": "Atualize as informações do seu perfil.",
+    "form": {
+      "avatarPhoto": "Foto de perfil",
+      "avatarPhotoDescription": "Envie uma imagem PNG, JPG ou WEBP de até 2 MB.",
+      "choosePhoto": "Escolher imagem",
+      "changePhoto": "Trocar imagem",
+      "bio": "Bio",
+      "bioPlaceholder": "Conte um pouco sobre você...",
+      "bioDescription": "Uma breve descrição sobre você (opcional).",
+      "create": "Criar perfil",
+      "update": "Salvar alterações",
+      "cancel": "Cancelar",
+      "submitting": "Salvando...",
+      "genericError": "Falha ao salvar o perfil. Tente novamente."
+    }
+  },
   "signup": {
     "title": "Crie sua conta",
     "description": "Preencha o formulário abaixo para criar sua conta",
