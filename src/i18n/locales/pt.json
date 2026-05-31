@@ -38,19 +38,22 @@
     "courses": "Cursos",
     "pricing": "Preços",
     "login": "Entrar",
-    "signup": "Cadastrar"
+    "signup": "Cadastrar",
+    "openMenu": "Abrir menu"
   },
   "sidebar": {
     "dashboard": "Painel",
     "myFinances": "Minhas Finanças",
     "progress": "Progresso",
     "settings": "Configurações",
+    "profile": "Perfil",
     "logout": "Sair"
   },
   "authNavbar": {
     "profile": "Perfil",
     "settings": "Configurações",
-    "logout": "Sair"
+    "logout": "Sair",
+    "openMenu": "Abrir menu"
   },
   "login": {
     "title": "Entrar na sua conta",

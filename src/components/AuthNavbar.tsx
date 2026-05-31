@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -7,16 +7,33 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, Settings, User } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { useAuth } from "@/context/AuthContext";
+import { LogOut, Menu, Settings, User } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "@/context/AuthContext";
+import { SidebarNav } from "./Sidebar";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function AuthNavbar() {
   const { t } = useTranslation();
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const initials =
+    user?.name
+      ?.split(" ")
+      .slice(0, 2)
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase() ?? "U";
 
   const handleLogout = async () => {
     await logout();
@@ -26,22 +43,43 @@ export default function AuthNavbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
       <div className="flex h-14 items-center justify-between px-4">
-        <Link to="/dashboard" className="text-lg font-bold">
-          {t("navbar.brand")}
-        </Link>
+        <div className="flex items-center gap-2">
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden"
+                aria-label={t("navbar.openMenu")}
+              >
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-60 p-0">
+              <SheetTitle className="px-4 pt-4 text-lg font-bold">
+                {t("navbar.brand")}
+              </SheetTitle>
+              <SidebarNav onNavigate={() => setMobileOpen(false)} />
+            </SheetContent>
+          </Sheet>
+
+          <Link to="/dashboard" className="text-lg font-bold">
+            {t("navbar.brand")}
+          </Link>
+        </div>
 
         <div className="flex items-center gap-2">
           <ThemeSwitcher />
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full"
-              >
+              <Button variant="ghost" size="icon" className="rounded-full">
                 <Avatar className="h-8 w-8">
-                  <AvatarFallback>U</AvatarFallback>
+                  <AvatarImage
+                    src={user?.avatar_url ?? undefined}
+                    alt={user?.name ?? "User"}
+                  />
+                  <AvatarFallback>{initials}</AvatarFallback>
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>
