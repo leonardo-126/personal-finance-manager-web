@@ -3,8 +3,9 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
-  BookOpen,
-  BarChart3,
+  Banknote,
+  PiggyBank,
+  Wallet,
   Settings,
   User,
   LogOut,
@@ -14,8 +15,9 @@ import { Separator } from "@/components/ui/separator";
 export const navItems = [
   { key: "sidebar.dashboard", href: "/dashboard", icon: LayoutDashboard },
   { key: "sidebar.profile", href: "/dashboard/profile", icon: User },
-  { key: "sidebar.myFinances", href: "/dashboard/finances", icon: BookOpen },
-  { key: "sidebar.progress", href: "/dashboard/progress", icon: BarChart3 },
+  { key: "sidebar.fontesRenda", href: "/dashboard/fontes-renda", icon: Wallet },
+  { key: "sidebar.rendas", href: "/dashboard/rendas", icon: Banknote },
+  { key: "sidebar.caixas", href: "/dashboard/caixas", icon: PiggyBank },
   { key: "sidebar.settings", href: "/dashboard/settings", icon: Settings },
 ];
 

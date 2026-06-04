@@ -1,6 +1,16 @@
 import { api } from "@/lib/api";
 import type { LoginCredentials, SignupCredentials, User } from "@/types/auth";
 import type { Profile, ProfileInput } from "@/types/profile";
+import type {
+  CaixaFinanceira,
+  CaixaFinanceiraInput,
+} from "@/types/caixa";
+import type {
+  CreateFonteRendaInput,
+  FonteRenda,
+  UpdateFonteRendaInput,
+} from "@/types/fonte-renda";
+import type { Renda, RendaInput } from "@/types/renda";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL as string;
 const SERVER_URL = API_BASE.replace(/\/api\/?$/, "");
@@ -43,4 +53,37 @@ export const profileService = {
 
   update: (input: ProfileInput) =>
     api.post<Wrapped<Profile>>("/profile", toFormData(input, "PUT")).then(unwrap),
+};
+
+export const fonteRendaService = {
+  list: () => api.get<Wrapped<FonteRenda[]>>("/fontes-renda").then(unwrap),
+
+  create: (input: CreateFonteRendaInput) =>
+    api.post<Wrapped<FonteRenda>>("/fontes-renda", input).then(unwrap),
+
+  update: (id: number, input: UpdateFonteRendaInput) =>
+    api.put<Wrapped<FonteRenda>>(`/fontes-renda/${id}`, input).then(unwrap),
+};
+
+export const rendaService = {
+  list: () => api.get<Wrapped<Renda[]>>("/rendas").then(unwrap),
+
+  create: (input: RendaInput) =>
+    api.post<Wrapped<Renda>>("/rendas", input).then(unwrap),
+
+  update: (id: number, input: RendaInput) =>
+    api.put<Wrapped<Renda>>(`/rendas/${id}`, input).then(unwrap),
+};
+
+export const caixaService = {
+  list: () =>
+    api.get<Wrapped<CaixaFinanceira[]>>("/caixas-financeiras").then(unwrap),
+
+  create: (input: CaixaFinanceiraInput) =>
+    api.post<Wrapped<CaixaFinanceira>>("/caixas-financeiras", input).then(unwrap),
+
+  update: (id: number, input: CaixaFinanceiraInput) =>
+    api
+      .put<Wrapped<CaixaFinanceira>>(`/caixas-financeiras/${id}`, input)
+      .then(unwrap),
 };

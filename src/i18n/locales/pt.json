@@ -43,11 +43,118 @@
   },
   "sidebar": {
     "dashboard": "Painel",
-    "myFinances": "Minhas Finanças",
-    "progress": "Progresso",
+    "fontesRenda": "Fontes de Renda",
+    "rendas": "Rendas",
+    "caixas": "Caixas Financeiras",
     "settings": "Configurações",
     "profile": "Perfil",
     "logout": "Sair"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "saving": "Salvando...",
+    "save": "Salvar alterações",
+    "create": "Criar",
+    "cancel": "Cancelar",
+    "edit": "Editar"
+  },
+  "dashboard": {
+    "title": "Painel",
+    "subtitle": "Visão geral das suas finanças.",
+    "loadError": "Não foi possível carregar o painel. Tente novamente.",
+    "empty": "Registre suas primeiras rendas para visualizar os gráficos.",
+    "income": "Rendas",
+    "kpi": {
+      "total": "Total recebido",
+      "month": "Recebido no mês",
+      "activeSources": "Fontes ativas",
+      "count": "Rendas registradas"
+    },
+    "evolution": {
+      "title": "Evolução das rendas",
+      "description": "Total recebido nos últimos 6 meses."
+    },
+    "bySource": {
+      "title": "Rendas por fonte",
+      "description": "Distribuição do total por fonte de renda."
+    },
+    "byType": {
+      "title": "Rendas por tipo",
+      "description": "Total recebido por tipo de fonte."
+    }
+  },
+  "fontesRenda": {
+    "title": "Fontes de Renda",
+    "subtitle": "Cadastre de onde vem o seu dinheiro.",
+    "new": "Nova fonte",
+    "empty": "Você ainda não cadastrou nenhuma fonte de renda.",
+    "loadError": "Não foi possível carregar as fontes de renda. Tente novamente.",
+    "createTitle": "Nova fonte de renda",
+    "createDescription": "Adicione uma nova origem de receita.",
+    "editTitle": "Editar fonte de renda",
+    "editDescription": "Atualize as informações desta fonte de renda.",
+    "tipos": {
+      "salário": "Salário",
+      "investimento": "Investimento",
+      "extra": "Extra",
+      "outro": "Outro"
+    },
+    "statuses": {
+      "ativo": "Ativo",
+      "inativo": "Inativo"
+    },
+    "form": {
+      "nome": "Nome",
+      "nomePlaceholder": "Ex.: Salário, Freelas, Dividendos...",
+      "tipo": "Tipo",
+      "status": "Status",
+      "descricao": "Descrição",
+      "descricaoPlaceholder": "Detalhes sobre esta fonte (opcional)...",
+      "descricaoDescription": "Uma descrição opcional para identificar a fonte.",
+      "genericError": "Falha ao salvar a fonte de renda. Tente novamente."
+    }
+  },
+  "rendas": {
+    "title": "Rendas",
+    "subtitle": "Registre os recebimentos das suas fontes de renda.",
+    "new": "Nova renda",
+    "empty": "Você ainda não registrou nenhuma renda.",
+    "loadError": "Não foi possível carregar as rendas. Tente novamente.",
+    "total": "Total recebido",
+    "unknownFonte": "Fonte removida",
+    "createTitle": "Nova renda",
+    "createDescription": "Registre um novo recebimento.",
+    "editTitle": "Editar renda",
+    "editDescription": "Atualize as informações deste recebimento.",
+    "form": {
+      "fonte": "Fonte de renda",
+      "fontePlaceholder": "Selecione uma fonte",
+      "noFontes": "Cadastre uma fonte de renda antes de registrar uma renda.",
+      "valor": "Valor",
+      "data": "Data de recebimento",
+      "descricao": "Descrição",
+      "descricaoPlaceholder": "Detalhes sobre este recebimento (opcional)...",
+      "genericError": "Falha ao salvar a renda. Tente novamente."
+    }
+  },
+  "caixas": {
+    "title": "Caixas Financeiras",
+    "subtitle": "Organize seu dinheiro em diferentes caixas.",
+    "new": "Nova caixa",
+    "empty": "Você ainda não criou nenhuma caixa financeira.",
+    "loadError": "Não foi possível carregar as caixas. Tente novamente.",
+    "createTitle": "Nova caixa financeira",
+    "createDescription": "Crie uma nova caixa para organizar seu dinheiro.",
+    "editTitle": "Editar caixa financeira",
+    "editDescription": "Atualize as informações desta caixa.",
+    "form": {
+      "nome": "Nome",
+      "nomePlaceholder": "Ex.: Conta corrente, Reserva, Carteira...",
+      "descricao": "Descrição",
+      "descricaoPlaceholder": "Detalhes sobre esta caixa (opcional)...",
+      "descricaoDescription": "Uma descrição opcional para identificar a caixa.",
+      "genericError": "Falha ao salvar a caixa. Tente novamente."
+    }
   },
   "authNavbar": {
     "profile": "Perfil",
