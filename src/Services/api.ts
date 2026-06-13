@@ -11,6 +11,10 @@ import type {
   UpdateFonteRendaInput,
 } from "@/types/fonte-renda";
 import type { Renda, RendaInput } from "@/types/renda";
+import type {
+  MovimentacaoCaixa,
+  MovimentacaoCaixaInput,
+} from "@/types/movimentacao";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL as string;
 const SERVER_URL = API_BASE.replace(/\/api\/?$/, "");
@@ -85,5 +89,20 @@ export const caixaService = {
   update: (id: number, input: CaixaFinanceiraInput) =>
     api
       .put<Wrapped<CaixaFinanceira>>(`/caixas-financeiras/${id}`, input)
+      .then(unwrap),
+};
+
+export const movimentacaoService = {
+  list: () =>
+    api.get<Wrapped<MovimentacaoCaixa[]>>("/movimentacoes-caixas").then(unwrap),
+
+  create: (input: MovimentacaoCaixaInput) =>
+    api
+      .post<Wrapped<MovimentacaoCaixa>>("/movimentacoes-caixas", input)
+      .then(unwrap),
+
+  update: (id: number, input: MovimentacaoCaixaInput) =>
+    api
+      .put<Wrapped<MovimentacaoCaixa>>(`/movimentacoes-caixas/${id}`, input)
       .then(unwrap),
 };

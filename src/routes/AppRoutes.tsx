@@ -7,6 +7,7 @@ import NotFound from "@/pages/NotFound";
 import Caixas from "@/pages/pages/Caixas";
 import Dashboard from "@/pages/pages/Dashboard";
 import FontesRenda from "@/pages/pages/FontesRenda";
+import Movimentacoes from "@/pages/pages/Movimentacoes";
 import Profile from "@/pages/pages/Profile";
 import Rendas from "@/pages/pages/Rendas";
 import ProtectedRoute from "@/routes/ProtectedRoute";
@@ -29,6 +30,7 @@ export default function AppRoutes() {
           <Route path="fontes-renda" element={<FontesRenda />} />
           <Route path="rendas" element={<Rendas />} />
           <Route path="caixas" element={<Caixas />} />
+          <Route path="movimentacoes" element={<Movimentacoes />} />
         </Route>
       </Route>
 

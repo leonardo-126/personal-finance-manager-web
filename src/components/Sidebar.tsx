@@ -6,6 +6,7 @@ import {
   Banknote,
   PiggyBank,
   Wallet,
+  ArrowLeftRight,
   Settings,
   User,
   LogOut,
@@ -18,6 +19,11 @@ export const navItems = [
   { key: "sidebar.fontesRenda", href: "/dashboard/fontes-renda", icon: Wallet },
   { key: "sidebar.rendas", href: "/dashboard/rendas", icon: Banknote },
   { key: "sidebar.caixas", href: "/dashboard/caixas", icon: PiggyBank },
+  {
+    key: "sidebar.movimentacoes",
+    href: "/dashboard/movimentacoes",
+    icon: ArrowLeftRight,
+  },
   { key: "sidebar.settings", href: "/dashboard/settings", icon: Settings },
 ];
 

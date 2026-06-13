@@ -46,6 +46,7 @@
     "fontesRenda": "Fontes de Renda",
     "rendas": "Rendas",
     "caixas": "Caixas Financeiras",
+    "movimentacoes": "Movimentações",
     "settings": "Configurações",
     "profile": "Perfil",
     "logout": "Sair"
@@ -154,6 +155,37 @@
       "descricaoPlaceholder": "Detalhes sobre esta caixa (opcional)...",
       "descricaoDescription": "Uma descrição opcional para identificar a caixa.",
       "genericError": "Falha ao salvar a caixa. Tente novamente."
+    }
+  },
+  "movimentacoes": {
+    "title": "Movimentações",
+    "subtitle": "Registre entradas, saídas e transferências das suas caixas.",
+    "new": "Nova movimentação",
+    "empty": "Você ainda não registrou nenhuma movimentação.",
+    "loadError": "Não foi possível carregar as movimentações. Tente novamente.",
+    "saldo": "Saldo das movimentações",
+    "unknownCaixa": "Caixa removida",
+    "createTitle": "Nova movimentação",
+    "createDescription": "Registre uma nova movimentação de caixa.",
+    "editTitle": "Editar movimentação",
+    "editDescription": "Atualize as informações desta movimentação.",
+    "tipos": {
+      "entrada": "Entrada",
+      "saida": "Saída",
+      "transferencia": "Transferência"
+    },
+    "form": {
+      "caixa": "Caixa financeira",
+      "caixaPlaceholder": "Selecione uma caixa",
+      "noCaixas": "Cadastre uma caixa financeira antes de registrar uma movimentação.",
+      "tipo": "Tipo",
+      "tipoPlaceholder": "Selecione o tipo",
+      "valor": "Valor",
+      "renda": "Renda vinculada",
+      "rendaPlaceholder": "Selecione uma renda",
+      "rendaNenhuma": "Nenhuma",
+      "rendaDescription": "Vincule esta movimentação a uma renda (opcional).",
+      "genericError": "Falha ao salvar a movimentação. Tente novamente."
     }
   },
   "authNavbar": {
