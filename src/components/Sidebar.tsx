@@ -7,6 +7,9 @@ import {
   PiggyBank,
   Wallet,
   ArrowLeftRight,
+  Tag,
+  Receipt,
+  ListChecks,
   Settings,
   User,
   LogOut,
@@ -23,6 +26,17 @@ export const navItems = [
     key: "sidebar.movimentacoes",
     href: "/dashboard/movimentacoes",
     icon: ArrowLeftRight,
+  },
+  {
+    key: "sidebar.categoriasGastos",
+    href: "/dashboard/categorias-gastos",
+    icon: Tag,
+  },
+  { key: "sidebar.gastos", href: "/dashboard/gastos", icon: Receipt },
+  {
+    key: "sidebar.gastosItens",
+    href: "/dashboard/gastos-itens",
+    icon: ListChecks,
   },
   { key: "sidebar.settings", href: "/dashboard/settings", icon: Settings },
 ];

@@ -15,6 +15,12 @@ import type {
   MovimentacaoCaixa,
   MovimentacaoCaixaInput,
 } from "@/types/movimentacao";
+import type {
+  CategoriaGasto,
+  CategoriaGastoInput,
+} from "@/types/categoria-gasto";
+import type { Gasto, GastoInput } from "@/types/gasto";
+import type { GastoItem, GastoItemInput } from "@/types/gasto-item";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL as string;
 const SERVER_URL = API_BASE.replace(/\/api\/?$/, "");
@@ -105,4 +111,37 @@ export const movimentacaoService = {
     api
       .put<Wrapped<MovimentacaoCaixa>>(`/movimentacoes-caixas/${id}`, input)
       .then(unwrap),
+};
+
+export const categoriaGastoService = {
+  list: () =>
+    api.get<Wrapped<CategoriaGasto[]>>("/categorias-gastos").then(unwrap),
+
+  create: (input: CategoriaGastoInput) =>
+    api.post<Wrapped<CategoriaGasto>>("/categorias-gastos", input).then(unwrap),
+
+  update: (id: number, input: CategoriaGastoInput) =>
+    api
+      .put<Wrapped<CategoriaGasto>>(`/categorias-gastos/${id}`, input)
+      .then(unwrap),
+};
+
+export const gastoService = {
+  list: () => api.get<Wrapped<Gasto[]>>("/gastos").then(unwrap),
+
+  create: (input: GastoInput) =>
+    api.post<Wrapped<Gasto>>("/gastos", input).then(unwrap),
+
+  update: (id: number, input: GastoInput) =>
+    api.put<Wrapped<Gasto>>(`/gastos/${id}`, input).then(unwrap),
+};
+
+export const gastoItemService = {
+  list: () => api.get<Wrapped<GastoItem[]>>("/gastos-itens").then(unwrap),
+
+  create: (input: GastoItemInput) =>
+    api.post<Wrapped<GastoItem>>("/gastos-itens", input).then(unwrap),
+
+  update: (id: number, input: GastoItemInput) =>
+    api.put<Wrapped<GastoItem>>(`/gastos-itens/${id}`, input).then(unwrap),
 };

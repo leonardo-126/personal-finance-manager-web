@@ -5,8 +5,11 @@ import Signup from "@/pages/auth/signup";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/NotFound";
 import Caixas from "@/pages/pages/Caixas";
+import CategoriasGastos from "@/pages/pages/CategoriasGastos";
 import Dashboard from "@/pages/pages/Dashboard";
 import FontesRenda from "@/pages/pages/FontesRenda";
+import Gastos from "@/pages/pages/Gastos";
+import GastosItens from "@/pages/pages/GastosItens";
 import Movimentacoes from "@/pages/pages/Movimentacoes";
 import Profile from "@/pages/pages/Profile";
 import Rendas from "@/pages/pages/Rendas";
@@ -31,6 +34,9 @@ export default function AppRoutes() {
           <Route path="rendas" element={<Rendas />} />
           <Route path="caixas" element={<Caixas />} />
           <Route path="movimentacoes" element={<Movimentacoes />} />
+          <Route path="categorias-gastos" element={<CategoriasGastos />} />
+          <Route path="gastos" element={<Gastos />} />
+          <Route path="gastos-itens" element={<GastosItens />} />
         </Route>
       </Route>
 
