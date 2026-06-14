@@ -73,6 +73,8 @@ export const fonteRendaService = {
 
   update: (id: number, input: UpdateFonteRendaInput) =>
     api.put<Wrapped<FonteRenda>>(`/fontes-renda/${id}`, input).then(unwrap),
+
+  remove: (id: number) => api.del<void>(`/fontes-renda/${id}`),
 };
 
 export const rendaService = {
@@ -83,6 +85,8 @@ export const rendaService = {
 
   update: (id: number, input: RendaInput) =>
     api.put<Wrapped<Renda>>(`/rendas/${id}`, input).then(unwrap),
+
+  remove: (id: number) => api.del<void>(`/rendas/${id}`),
 };
 
 export const caixaService = {
@@ -96,6 +100,8 @@ export const caixaService = {
     api
       .put<Wrapped<CaixaFinanceira>>(`/caixas-financeiras/${id}`, input)
       .then(unwrap),
+
+  remove: (id: number) => api.del<void>(`/caixas-financeiras/${id}`),
 };
 
 export const movimentacaoService = {
@@ -111,6 +117,8 @@ export const movimentacaoService = {
     api
       .put<Wrapped<MovimentacaoCaixa>>(`/movimentacoes-caixas/${id}`, input)
       .then(unwrap),
+
+  remove: (id: number) => api.del<void>(`/movimentacoes-caixas/${id}`),
 };
 
 export const categoriaGastoService = {
@@ -124,6 +132,8 @@ export const categoriaGastoService = {
     api
       .put<Wrapped<CategoriaGasto>>(`/categorias-gastos/${id}`, input)
       .then(unwrap),
+
+  remove: (id: number) => api.del<void>(`/categorias-gastos/${id}`),
 };
 
 export const gastoService = {
@@ -134,6 +144,8 @@ export const gastoService = {
 
   update: (id: number, input: GastoInput) =>
     api.put<Wrapped<Gasto>>(`/gastos/${id}`, input).then(unwrap),
+
+  remove: (id: number) => api.del<void>(`/gastos/${id}`),
 };
 
 export const gastoItemService = {
@@ -144,4 +156,6 @@ export const gastoItemService = {
 
   update: (id: number, input: GastoItemInput) =>
     api.put<Wrapped<GastoItem>>(`/gastos-itens/${id}`, input).then(unwrap),
+
+  remove: (id: number) => api.del<void>(`/gastos-itens/${id}`),
 };

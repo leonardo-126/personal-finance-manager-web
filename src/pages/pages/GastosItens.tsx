@@ -11,7 +11,7 @@ import { formatCurrency } from "@/lib/format";
 import { gastoItemService, gastoService } from "@/Services/api";
 import type { Gasto } from "@/types/gasto";
 import type { GastoItem } from "@/types/gasto-item";
-import { ListChecks, Pencil, Plus } from "lucide-react";
+import { ListChecks, Pencil, Plus, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import GastoItemForm from "./GastoItemForm";
@@ -26,6 +26,7 @@ export default function GastosItens() {
   const [editing, setEditing] = useState<GastoItem | null | undefined>(
     undefined,
   );
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -61,6 +62,19 @@ export default function GastosItens() {
         : [saved, ...prev];
     });
     setEditing(undefined);
+  };
+
+  const handleDelete = async (item: GastoItem) => {
+    if (!window.confirm(t("common.deleteConfirm"))) return;
+    setDeletingId(item.id);
+    try {
+      await gastoItemService.remove(item.id);
+      setItens((prev) => prev.filter((i) => i.id !== item.id));
+    } catch {
+      setError(t("common.deleteError"));
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   const isSheetOpen = editing !== undefined;
@@ -136,6 +150,16 @@ export default function GastosItens() {
                       aria-label={t("common.edit")}
                     >
                       <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => handleDelete(item)}
+                      disabled={deletingId === item.id}
+                      aria-label={t("common.delete")}
+                      className="text-destructive hover:text-destructive"
+                    >
+                      <Trash2 className="h-4 w-4" />
                     </Button>
                   </div>
                 </CardContent>

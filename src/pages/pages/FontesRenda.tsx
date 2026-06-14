@@ -10,7 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 import { fonteRendaService } from "@/Services/api";
 import type { FonteRenda } from "@/types/fonte-renda";
-import { Pencil, Plus, Wallet } from "lucide-react";
+import { Pencil, Plus, Trash2, Wallet } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import FonteRendaForm from "./FonteRendaForm";
@@ -26,6 +26,7 @@ export default function FontesRenda() {
   const [editing, setEditing] = useState<FonteRenda | null | undefined>(
     undefined,
   );
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -55,6 +56,19 @@ export default function FontesRenda() {
         : [saved, ...prev];
     });
     setEditing(undefined);
+  };
+
+  const handleDelete = async (fonte: FonteRenda) => {
+    if (!window.confirm(t("common.deleteConfirm"))) return;
+    setDeletingId(fonte.id);
+    try {
+      await fonteRendaService.remove(fonte.id);
+      setFontes((prev) => prev.filter((f) => f.id !== fonte.id));
+    } catch {
+      setError(t("common.deleteError"));
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   const isSheetOpen = editing !== undefined;
@@ -123,14 +137,26 @@ export default function FontesRenda() {
                     </p>
                   )}
                 </div>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setEditing(fonte)}
-                  aria-label={t("common.edit")}
-                >
-                  <Pencil className="h-4 w-4" />
-                </Button>
+                <div className="flex items-center gap-1">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setEditing(fonte)}
+                    aria-label={t("common.edit")}
+                  >
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleDelete(fonte)}
+                    disabled={deletingId === fonte.id}
+                    aria-label={t("common.delete")}
+                    className="text-destructive hover:text-destructive"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}

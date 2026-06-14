@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import { caixaService } from "@/Services/api";
 import type { CaixaFinanceira } from "@/types/caixa";
-import { Pencil, PiggyBank, Plus } from "lucide-react";
+import { Pencil, PiggyBank, Plus, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CaixaForm from "./CaixaForm";
@@ -23,6 +23,7 @@ export default function Caixas() {
   const [editing, setEditing] = useState<
     CaixaFinanceira | null | undefined
   >(undefined);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -52,6 +53,19 @@ export default function Caixas() {
         : [saved, ...prev];
     });
     setEditing(undefined);
+  };
+
+  const handleDelete = async (caixa: CaixaFinanceira) => {
+    if (!window.confirm(t("common.deleteConfirm"))) return;
+    setDeletingId(caixa.id);
+    try {
+      await caixaService.remove(caixa.id);
+      setCaixas((prev) => prev.filter((c) => c.id !== caixa.id));
+    } catch {
+      setError(t("common.deleteError"));
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   const isSheetOpen = editing !== undefined;
@@ -106,14 +120,26 @@ export default function Caixas() {
                     )}
                   </div>
                 </div>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setEditing(caixa)}
-                  aria-label={t("common.edit")}
-                >
-                  <Pencil className="h-4 w-4" />
-                </Button>
+                <div className="flex items-center gap-1">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setEditing(caixa)}
+                    aria-label={t("common.edit")}
+                  >
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleDelete(caixa)}
+                    disabled={deletingId === caixa.id}
+                    aria-label={t("common.delete")}
+                    className="text-destructive hover:text-destructive"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}

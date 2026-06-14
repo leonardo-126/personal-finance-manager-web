@@ -12,7 +12,7 @@ import { caixaService, movimentacaoService, rendaService } from "@/Services/api"
 import type { CaixaFinanceira } from "@/types/caixa";
 import type { MovimentacaoCaixa } from "@/types/movimentacao";
 import type { Renda } from "@/types/renda";
-import { ArrowLeftRight, Pencil, Plus } from "lucide-react";
+import { ArrowLeftRight, Pencil, Plus, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import MovimentacaoForm from "./MovimentacaoForm";
@@ -28,6 +28,7 @@ export default function Movimentacoes() {
   const [editing, setEditing] = useState<
     MovimentacaoCaixa | null | undefined
   >(undefined);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -77,6 +78,21 @@ export default function Movimentacoes() {
         : [saved, ...prev];
     });
     setEditing(undefined);
+  };
+
+  const handleDelete = async (movimentacao: MovimentacaoCaixa) => {
+    if (!window.confirm(t("common.deleteConfirm"))) return;
+    setDeletingId(movimentacao.id);
+    try {
+      await movimentacaoService.remove(movimentacao.id);
+      setMovimentacoes((prev) =>
+        prev.filter((m) => m.id !== movimentacao.id),
+      );
+    } catch {
+      setError(t("common.deleteError"));
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   const isSheetOpen = editing !== undefined;
@@ -163,6 +179,16 @@ export default function Movimentacoes() {
                       aria-label={t("common.edit")}
                     >
                       <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => handleDelete(movimentacao)}
+                      disabled={deletingId === movimentacao.id}
+                      aria-label={t("common.delete")}
+                      className="text-destructive hover:text-destructive"
+                    >
+                      <Trash2 className="h-4 w-4" />
                     </Button>
                   </div>
                 </CardContent>

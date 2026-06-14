@@ -12,7 +12,7 @@ import { caixaService, categoriaGastoService, gastoService } from "@/Services/ap
 import type { CaixaFinanceira } from "@/types/caixa";
 import type { CategoriaGasto } from "@/types/categoria-gasto";
 import type { Gasto } from "@/types/gasto";
-import { Pencil, Plus, Receipt } from "lucide-react";
+import { Pencil, Plus, Receipt, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import GastoForm from "./GastoForm";
@@ -26,6 +26,7 @@ export default function Gastos() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [editing, setEditing] = useState<Gasto | null | undefined>(undefined);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -75,6 +76,19 @@ export default function Gastos() {
         : [saved, ...prev];
     });
     setEditing(undefined);
+  };
+
+  const handleDelete = async (gasto: Gasto) => {
+    if (!window.confirm(t("common.deleteConfirm"))) return;
+    setDeletingId(gasto.id);
+    try {
+      await gastoService.remove(gasto.id);
+      setGastos((prev) => prev.filter((g) => g.id !== gasto.id));
+    } catch {
+      setError(t("common.deleteError"));
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   const isSheetOpen = editing !== undefined;
@@ -152,6 +166,16 @@ export default function Gastos() {
                       aria-label={t("common.edit")}
                     >
                       <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => handleDelete(gasto)}
+                      disabled={deletingId === gasto.id}
+                      aria-label={t("common.delete")}
+                      className="text-destructive hover:text-destructive"
+                    >
+                      <Trash2 className="h-4 w-4" />
                     </Button>
                   </div>
                 </CardContent>

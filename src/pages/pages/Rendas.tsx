@@ -11,7 +11,7 @@ import { formatCurrency, formatDate } from "@/lib/format";
 import { fonteRendaService, rendaService } from "@/Services/api";
 import type { FonteRenda } from "@/types/fonte-renda";
 import type { Renda } from "@/types/renda";
-import { Banknote, Pencil, Plus } from "lucide-react";
+import { Banknote, Pencil, Plus, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import RendaForm from "./RendaForm";
@@ -24,6 +24,7 @@ export default function Rendas() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [editing, setEditing] = useState<Renda | null | undefined>(undefined);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -64,6 +65,19 @@ export default function Rendas() {
         : [saved, ...prev];
     });
     setEditing(undefined);
+  };
+
+  const handleDelete = async (renda: Renda) => {
+    if (!window.confirm(t("common.deleteConfirm"))) return;
+    setDeletingId(renda.id);
+    try {
+      await rendaService.remove(renda.id);
+      setRendas((prev) => prev.filter((r) => r.id !== renda.id));
+    } catch {
+      setError(t("common.deleteError"));
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   const isSheetOpen = editing !== undefined;
@@ -138,6 +152,16 @@ export default function Rendas() {
                       aria-label={t("common.edit")}
                     >
                       <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => handleDelete(renda)}
+                      disabled={deletingId === renda.id}
+                      aria-label={t("common.delete")}
+                      className="text-destructive hover:text-destructive"
+                    >
+                      <Trash2 className="h-4 w-4" />
                     </Button>
                   </div>
                 </CardContent>

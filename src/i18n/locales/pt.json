@@ -60,7 +60,10 @@
     "save": "Salvar alterações",
     "create": "Criar",
     "cancel": "Cancelar",
-    "edit": "Editar"
+    "edit": "Editar",
+    "delete": "Excluir",
+    "deleteConfirm": "Tem certeza que deseja excluir este registro?",
+    "deleteError": "Não foi possível excluir. Tente novamente."
   },
   "dashboard": {
     "title": "Painel",

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import { categoriaGastoService } from "@/Services/api";
 import type { CategoriaGasto } from "@/types/categoria-gasto";
-import { Pencil, Plus, Tag } from "lucide-react";
+import { Pencil, Plus, Tag, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CategoriaGastoForm from "./CategoriaGastoForm";
@@ -23,6 +23,7 @@ export default function CategoriasGastos() {
   const [editing, setEditing] = useState<CategoriaGasto | null | undefined>(
     undefined,
   );
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -52,6 +53,19 @@ export default function CategoriasGastos() {
         : [saved, ...prev];
     });
     setEditing(undefined);
+  };
+
+  const handleDelete = async (categoria: CategoriaGasto) => {
+    if (!window.confirm(t("common.deleteConfirm"))) return;
+    setDeletingId(categoria.id);
+    try {
+      await categoriaGastoService.remove(categoria.id);
+      setCategorias((prev) => prev.filter((c) => c.id !== categoria.id));
+    } catch {
+      setError(t("common.deleteError"));
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   const isSheetOpen = editing !== undefined;
@@ -98,14 +112,26 @@ export default function CategoriasGastos() {
             <Card key={categoria.id}>
               <CardContent className="flex items-center justify-between gap-3 p-4">
                 <p className="truncate font-medium">{categoria.nome}</p>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setEditing(categoria)}
-                  aria-label={t("common.edit")}
-                >
-                  <Pencil className="h-4 w-4" />
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setEditing(categoria)}
+                    aria-label={t("common.edit")}
+                  >
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleDelete(categoria)}
+                    disabled={deletingId === categoria.id}
+                    aria-label={t("common.delete")}
+                    className="text-destructive hover:text-destructive"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}
