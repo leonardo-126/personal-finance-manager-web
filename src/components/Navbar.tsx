@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { PiggyBank } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeSwitcher from "./ThemeSwitcher";
 
@@ -10,7 +11,10 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4">
         <div className="flex items-center gap-6">
-          <Link to="/" className="text-lg font-bold">
+          <Link to="/" className="flex items-center gap-2 text-lg font-bold">
+            <span className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <PiggyBank className="size-4" />
+            </span>
             {t("navbar.brand")}
           </Link>
           <nav className="hidden items-center gap-4 md:flex">

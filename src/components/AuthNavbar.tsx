@@ -14,7 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useAuth } from "@/context/AuthContext";
-import { LogOut, Menu, Settings, User } from "lucide-react";
+import { LogOut, Menu, PiggyBank, Settings, User } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
@@ -55,15 +55,24 @@ export default function AuthNavbar() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-60 p-0">
-              <SheetTitle className="px-4 pt-4 text-lg font-bold">
+            <SheetContent side="left" className="flex w-72 flex-col p-0">
+              <SheetTitle className="flex h-14 items-center gap-2 border-b px-5 text-lg font-bold">
+                <span className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                  <PiggyBank className="size-4" />
+                </span>
                 {t("navbar.brand")}
               </SheetTitle>
               <SidebarNav onNavigate={() => setMobileOpen(false)} />
             </SheetContent>
           </Sheet>
 
-          <Link to="/dashboard" className="text-lg font-bold">
+          <Link
+            to="/dashboard"
+            className="flex items-center gap-2 text-lg font-bold"
+          >
+            <span className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <PiggyBank className="size-4" />
+            </span>
             {t("navbar.brand")}
           </Link>
         </div>

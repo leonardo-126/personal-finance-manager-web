@@ -42,6 +42,13 @@
     "openMenu": "Abrir menu"
   },
   "sidebar": {
+    "groups": {
+      "overview": "Visão geral",
+      "income": "Receitas",
+      "expenses": "Despesas",
+      "cash": "Caixas",
+      "account": "Conta"
+    },
     "dashboard": "Painel",
     "fontesRenda": "Fontes de Renda",
     "rendas": "Rendas",
@@ -69,24 +76,57 @@
     "title": "Painel",
     "subtitle": "Visão geral das suas finanças.",
     "loadError": "Não foi possível carregar o painel. Tente novamente.",
-    "empty": "Registre suas primeiras rendas para visualizar os gráficos.",
-    "income": "Rendas",
+    "empty": "Registre rendas e gastos para visualizar os gráficos.",
+    "income": "Receitas",
+    "expense": "Despesas",
+    "noIncome": "Nenhuma receita no período.",
+    "noExpenses": "Nenhum gasto no período.",
+    "noMovements": "Nenhuma movimentação no período.",
+    "filters": {
+      "period": "Período",
+      "period3": "Últimos 3 meses",
+      "period6": "Últimos 6 meses",
+      "period12": "Últimos 12 meses",
+      "caixa": "Caixa",
+      "allCaixas": "Todas as caixas"
+    },
     "kpi": {
-      "total": "Total recebido",
-      "month": "Recebido no mês",
-      "activeSources": "Fontes ativas",
-      "count": "Rendas registradas"
+      "received": "Total recebido",
+      "spent": "Total gasto",
+      "balance": "Saldo",
+      "expenseCount": "Gastos registrados"
     },
     "evolution": {
-      "title": "Evolução das rendas",
-      "description": "Total recebido nos últimos 6 meses."
+      "title": "Receitas x Despesas",
+      "description": "Comparativo mensal no período selecionado."
+    },
+    "expensesByCategory": {
+      "title": "Gastos por categoria",
+      "description": "Distribuição das despesas por categoria.",
+      "unknown": "Sem categoria"
+    },
+    "expensesByCaixa": {
+      "title": "Gastos por caixa",
+      "description": "Total de despesas por caixa financeira.",
+      "unknown": "Sem caixa"
+    },
+    "movementsByCaixa": {
+      "title": "Movimentações por caixa",
+      "description": "Entradas e saídas registradas por caixa.",
+      "entrada": "Entradas",
+      "saida": "Saídas"
+    },
+    "topItems": {
+      "title": "Maiores itens de gasto",
+      "description": "Itens de maior valor no período.",
+      "empty": "Nenhum item de gasto no período."
     },
     "bySource": {
-      "title": "Rendas por fonte",
+      "title": "Receitas por fonte",
       "description": "Distribuição do total por fonte de renda."
     },
     "byType": {
-      "title": "Rendas por tipo",
+      "title": "Receitas por tipo",
       "description": "Total recebido por tipo de fonte."
     }
   },
