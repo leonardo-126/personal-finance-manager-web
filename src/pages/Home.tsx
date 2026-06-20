@@ -64,7 +64,6 @@ export default function Home() {
           <span className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-background/60 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
             <Sparkles className="size-3.5 text-primary" />
             {t("home.badge")}
-            a
           </span>
 
           <h1 className="mt-6 font-heading text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl">
