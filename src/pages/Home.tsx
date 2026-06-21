@@ -9,6 +9,7 @@ import {
   TrendingUp,
   Wallet,
 } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
@@ -47,6 +48,7 @@ const features = [
 
 export default function Home() {
   const { t } = useTranslation();
+  const [state, setState] = useState("initial");
 
   return (
     <div className="flex flex-col gap-24 py-8">
