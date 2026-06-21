@@ -48,7 +48,6 @@ const features = [
 
 export default function Home() {
   const { t } = useTranslation();
-  const [state, setState] = useState("initial");
 
   return (
     <div className="flex flex-col gap-24 py-8">
