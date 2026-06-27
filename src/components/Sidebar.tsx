@@ -11,6 +11,7 @@ import {
   Tag,
   Receipt,
   ListChecks,
+  CreditCard,
   Settings,
   User,
   LogOut,
@@ -40,6 +41,7 @@ const navGroups: NavGroup[] = [
       { key: "sidebar.categoriasGastos", href: "/dashboard/categorias-gastos", icon: Tag },
       { key: "sidebar.gastos", href: "/dashboard/gastos", icon: Receipt },
       { key: "sidebar.gastosItens", href: "/dashboard/gastos-itens", icon: ListChecks },
+      { key: "sidebar.faturas", href: "/dashboard/faturas", icon: CreditCard },
     ],
   },
   {

@@ -21,6 +21,11 @@ import type {
 } from "@/types/categoria-gasto";
 import type { Gasto, GastoInput } from "@/types/gasto";
 import type { GastoItem, GastoItemInput } from "@/types/gasto-item";
+import type {
+  FaturaImportada,
+  FaturaPreview,
+  ImportarFaturaInput,
+} from "@/types/fatura";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL as string;
 const SERVER_URL = API_BASE.replace(/\/api\/?$/, "");
@@ -146,6 +151,30 @@ export const gastoService = {
     api.put<Wrapped<Gasto>>(`/gastos/${id}`, input).then(unwrap),
 
   remove: (id: number) => api.del<void>(`/gastos/${id}`),
+};
+
+export const faturaService = {
+  /** Lê o arquivo da fatura e devolve as transações encontradas, sem persistir. */
+  preview: (arquivo: File) => {
+    const form = new FormData();
+    form.append("arquivo", arquivo);
+    return api
+      .post<Wrapped<FaturaPreview>>("/faturas/preview", form)
+      .then(unwrap);
+  },
+
+  /** Importa a fatura: cria um gasto com um item por transação do arquivo. */
+  importar: (input: ImportarFaturaInput) => {
+    const form = new FormData();
+    form.append("arquivo", input.arquivo);
+    form.append("caixa_id", String(input.caixa_id));
+    form.append("categoria_id", String(input.categoria_id));
+    if (input.descricao) form.append("descricao", input.descricao);
+    if (input.data_gasto) form.append("data_gasto", input.data_gasto);
+    return api
+      .post<Wrapped<FaturaImportada>>("/faturas/importar", form)
+      .then(unwrap);
+  },
 };
 
 export const gastoItemService = {

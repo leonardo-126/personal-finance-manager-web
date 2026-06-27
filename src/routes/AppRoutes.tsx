@@ -7,6 +7,7 @@ import NotFound from "@/pages/NotFound";
 import Caixas from "@/pages/pages/Caixas";
 import CategoriasGastos from "@/pages/pages/CategoriasGastos";
 import Dashboard from "@/pages/pages/Dashboard";
+import Faturas from "@/pages/pages/Faturas";
 import FontesRenda from "@/pages/pages/FontesRenda";
 import Gastos from "@/pages/pages/Gastos";
 import GastosItens from "@/pages/pages/GastosItens";
@@ -37,6 +38,7 @@ export default function AppRoutes() {
           <Route path="categorias-gastos" element={<CategoriasGastos />} />
           <Route path="gastos" element={<Gastos />} />
           <Route path="gastos-itens" element={<GastosItens />} />
+          <Route path="faturas" element={<Faturas />} />
         </Route>
       </Route>
 

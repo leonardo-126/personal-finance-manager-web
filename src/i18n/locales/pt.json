@@ -57,6 +57,7 @@
     "categoriasGastos": "Categorias de Gastos",
     "gastos": "Gastos",
     "gastosItens": "Itens de Gastos",
+    "faturas": "Importar Fatura",
     "settings": "Configurações",
     "profile": "Perfil",
     "logout": "Sair"
@@ -299,6 +300,40 @@
       "motivo": "Motivo",
       "motivoPlaceholder": "Por que este item foi comprado (opcional)...",
       "genericError": "Falha ao salvar o item. Tente novamente."
+    }
+  },
+  "faturas": {
+    "title": "Importar Fatura",
+    "subtitle": "Importe a fatura do seu cartão exportada do Nubank (CSV ou Excel).",
+    "loadError": "Não foi possível carregar caixas e categorias. Tente novamente.",
+    "empty": "Selecione o arquivo da fatura para visualizar as transações.",
+    "reading": "Lendo o arquivo da fatura...",
+    "previewError": "Não foi possível ler o arquivo. Confira se é a fatura exportada do Nubank.",
+    "importError": "Falha ao importar a fatura. Tente novamente.",
+    "transactionsCount_one": "{{count}} transação encontrada",
+    "transactionsCount_other": "{{count}} transações encontradas",
+    "total": "Total da fatura",
+    "import": "Importar fatura",
+    "importing": "Importando...",
+    "success_one": "Fatura importada com {{count}} item.",
+    "success_other": "Fatura importada com {{count}} itens.",
+    "importAnother": "Importar outra fatura",
+    "table": {
+      "data": "Data",
+      "descricao": "Descrição",
+      "valor": "Valor"
+    },
+    "form": {
+      "arquivo": "Arquivo da fatura",
+      "arquivoHint": "Aceita .csv ou .xlsx exportado do app do Nubank.",
+      "caixa": "Caixa financeira",
+      "caixaPlaceholder": "Selecione uma caixa",
+      "noCaixas": "Cadastre uma caixa financeira antes de importar uma fatura.",
+      "categoria": "Categoria",
+      "categoriaPlaceholder": "Selecione uma categoria",
+      "noCategorias": "Cadastre uma categoria de gasto antes de importar uma fatura.",
+      "descricao": "Descrição",
+      "descricaoPlaceholder": "Ex.: Fatura Nubank agosto/2024 (opcional)..."
     }
   },
   "authNavbar": {

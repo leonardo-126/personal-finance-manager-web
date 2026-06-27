@@ -4,6 +4,7 @@ export interface GastoItem {
   nome: string;
   valor: string;
   motivo: string | null;
+  data_transacao: string | null;
   created_at: string;
   updated_at: string;
 }
