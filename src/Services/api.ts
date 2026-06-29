@@ -19,7 +19,7 @@ import type {
   CategoriaGasto,
   CategoriaGastoInput,
 } from "@/types/categoria-gasto";
-import type { Gasto, GastoInput } from "@/types/gasto";
+import type { Gasto, GastoComItens, GastoInput } from "@/types/gasto";
 import type { GastoItem, GastoItemInput } from "@/types/gasto-item";
 import type {
   FaturaImportada,
@@ -143,6 +143,10 @@ export const categoriaGastoService = {
 
 export const gastoService = {
   list: () => api.get<Wrapped<Gasto[]>>("/gastos").then(unwrap),
+
+  /** Busca um gasto/fatura com seus itens carregados, para análise. */
+  show: (id: number) =>
+    api.get<Wrapped<GastoComItens>>(`/gastos/${id}`).then(unwrap),
 
   create: (input: GastoInput) =>
     api.post<Wrapped<Gasto>>("/gastos", input).then(unwrap),

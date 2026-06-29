@@ -10,6 +10,11 @@ export interface Gasto {
   updated_at: string;
 }
 
+/** Gasto com seus itens carregados (usado no detalhe/análise da fatura). */
+export interface GastoComItens extends Gasto {
+  itens: import("./gasto-item").GastoItem[];
+}
+
 export interface GastoInput {
   caixa_id: number;
   categoria_id: number;

@@ -1,401 +1,445 @@
-{
-  "home": {
-    "badge": "Sua vida financeira sob controle",
-    "title": "Organize suas finanças e conquiste seus objetivos",
-    "description": "Acompanhe receitas e despesas, crie orçamentos e visualize para onde seu dinheiro vai. Tudo em um só lugar, de forma simples e segura.",
-    "ctaPrimary": "Comece de graça",
-    "ctaSecondary": "Já tenho conta",
-    "features": {
-      "title": "Tudo o que você precisa para cuidar do seu dinheiro",
-      "subtitle": "Uma plataforma completa construída em torno de como você realmente lida com suas finanças.",
-      "trackTitle": "Controle de gastos",
-      "trackDescription": "Registre receitas e despesas e saiba exatamente para onde vai cada centavo.",
-      "budgetTitle": "Orçamentos inteligentes",
-      "budgetDescription": "Defina limites por categoria e evite gastar mais do que planejou.",
-      "goalsTitle": "Metas financeiras",
-      "goalsDescription": "Crie objetivos de poupança e acompanhe seu progresso até alcançá-los.",
-      "reportsTitle": "Relatórios e insights",
-      "reportsDescription": "Visualize gráficos claros sobre seus hábitos e tome decisões melhores.",
-      "alertsTitle": "Alertas e lembretes",
-      "alertsDescription": "Receba avisos de contas a vencer e quando ultrapassar seu orçamento.",
-      "securityTitle": "Segurança em primeiro lugar",
-      "securityDescription": "Seus dados protegidos com criptografia e os mais altos padrões de segurança."
-    },
-    "cta": {
-      "title": "Pronto para assumir o controle?",
-      "description": "Organize sua vida financeira e dê o primeiro passo para realizar seus objetivos.",
-      "button": "Criar conta gratuita"
-    }
-  },
-  "notFound": {
-    "title": "Página não encontrada",
-    "description": "A página que você procura não existe ou foi movida.",
-    "backHome": "Voltar ao início"
-  },
-  "navbar": {
-    "brand": "Finanças",
-    "home": "Início",
-    "courses": "Cursos",
-    "pricing": "Preços",
-    "login": "Entrar",
-    "signup": "Cadastrar",
-    "openMenu": "Abrir menu"
-  },
-  "sidebar": {
-    "groups": {
-      "overview": "Visão geral",
-      "income": "Receitas",
-      "expenses": "Despesas",
-      "cash": "Caixas",
-      "account": "Conta"
-    },
-    "dashboard": "Painel",
-    "fontesRenda": "Fontes de Renda",
-    "rendas": "Rendas",
-    "caixas": "Caixas Financeiras",
-    "movimentacoes": "Movimentações",
-    "categoriasGastos": "Categorias de Gastos",
-    "gastos": "Gastos",
-    "gastosItens": "Itens de Gastos",
-    "faturas": "Importar Fatura",
-    "settings": "Configurações",
-    "profile": "Perfil",
-    "logout": "Sair"
-  },
-  "common": {
-    "loading": "Carregando...",
-    "saving": "Salvando...",
-    "save": "Salvar alterações",
-    "create": "Criar",
-    "cancel": "Cancelar",
-    "edit": "Editar",
-    "delete": "Excluir",
-    "deleteConfirm": "Tem certeza que deseja excluir este registro?",
-    "deleteError": "Não foi possível excluir. Tente novamente."
-  },
-  "dashboard": {
-    "title": "Painel",
-    "subtitle": "Visão geral das suas finanças.",
-    "loadError": "Não foi possível carregar o painel. Tente novamente.",
-    "empty": "Registre rendas e gastos para visualizar os gráficos.",
-    "income": "Receitas",
-    "expense": "Despesas",
-    "noIncome": "Nenhuma receita no período.",
-    "noExpenses": "Nenhum gasto no período.",
-    "noMovements": "Nenhuma movimentação no período.",
-    "filters": {
-      "period": "Período",
-      "period3": "Últimos 3 meses",
-      "period6": "Últimos 6 meses",
-      "period12": "Últimos 12 meses",
-      "caixa": "Caixa",
-      "allCaixas": "Todas as caixas"
-    },
-    "kpi": {
-      "received": "Total recebido",
-      "spent": "Total gasto",
-      "balance": "Saldo",
-      "expenseCount": "Gastos registrados"
-    },
-    "evolution": {
-      "title": "Receitas x Despesas",
-      "description": "Comparativo mensal no período selecionado."
-    },
-    "expensesByCategory": {
-      "title": "Gastos por categoria",
-      "description": "Distribuição das despesas por categoria.",
-      "unknown": "Sem categoria"
-    },
-    "expensesByCaixa": {
-      "title": "Gastos por caixa",
-      "description": "Total de despesas por caixa financeira.",
-      "unknown": "Sem caixa"
-    },
-    "movementsByCaixa": {
-      "title": "Movimentações por caixa",
-      "description": "Entradas e saídas registradas por caixa.",
-      "entrada": "Entradas",
-      "saida": "Saídas"
-    },
-    "topItems": {
-      "title": "Maiores itens de gasto",
-      "description": "Itens de maior valor no período.",
-      "empty": "Nenhum item de gasto no período."
-    },
-    "bySource": {
-      "title": "Receitas por fonte",
-      "description": "Distribuição do total por fonte de renda."
-    },
-    "byType": {
-      "title": "Receitas por tipo",
-      "description": "Total recebido por tipo de fonte."
-    }
-  },
-  "fontesRenda": {
-    "title": "Fontes de Renda",
-    "subtitle": "Cadastre de onde vem o seu dinheiro.",
-    "new": "Nova fonte",
-    "empty": "Você ainda não cadastrou nenhuma fonte de renda.",
-    "loadError": "Não foi possível carregar as fontes de renda. Tente novamente.",
-    "createTitle": "Nova fonte de renda",
-    "createDescription": "Adicione uma nova origem de receita.",
-    "editTitle": "Editar fonte de renda",
-    "editDescription": "Atualize as informações desta fonte de renda.",
-    "tipos": {
-      "salário": "Salário",
-      "investimento": "Investimento",
-      "extra": "Extra",
-      "outro": "Outro"
-    },
-    "statuses": {
-      "ativo": "Ativo",
-      "inativo": "Inativo"
-    },
-    "form": {
-      "nome": "Nome",
-      "nomePlaceholder": "Ex.: Salário, Freelas, Dividendos...",
-      "tipo": "Tipo",
-      "status": "Status",
-      "descricao": "Descrição",
-      "descricaoPlaceholder": "Detalhes sobre esta fonte (opcional)...",
-      "descricaoDescription": "Uma descrição opcional para identificar a fonte.",
-      "genericError": "Falha ao salvar a fonte de renda. Tente novamente."
-    }
-  },
-  "rendas": {
-    "title": "Rendas",
-    "subtitle": "Registre os recebimentos das suas fontes de renda.",
-    "new": "Nova renda",
-    "empty": "Você ainda não registrou nenhuma renda.",
-    "loadError": "Não foi possível carregar as rendas. Tente novamente.",
-    "total": "Total recebido",
-    "unknownFonte": "Fonte removida",
-    "createTitle": "Nova renda",
-    "createDescription": "Registre um novo recebimento.",
-    "editTitle": "Editar renda",
-    "editDescription": "Atualize as informações deste recebimento.",
-    "form": {
-      "fonte": "Fonte de renda",
-      "fontePlaceholder": "Selecione uma fonte",
-      "noFontes": "Cadastre uma fonte de renda antes de registrar uma renda.",
-      "valor": "Valor",
-      "data": "Data de recebimento",
-      "descricao": "Descrição",
-      "descricaoPlaceholder": "Detalhes sobre este recebimento (opcional)...",
-      "genericError": "Falha ao salvar a renda. Tente novamente."
-    }
-  },
-  "caixas": {
-    "title": "Caixas Financeiras",
-    "subtitle": "Organize seu dinheiro em diferentes caixas.",
-    "new": "Nova caixa",
-    "empty": "Você ainda não criou nenhuma caixa financeira.",
-    "loadError": "Não foi possível carregar as caixas. Tente novamente.",
-    "createTitle": "Nova caixa financeira",
-    "createDescription": "Crie uma nova caixa para organizar seu dinheiro.",
-    "editTitle": "Editar caixa financeira",
-    "editDescription": "Atualize as informações desta caixa.",
-    "form": {
-      "nome": "Nome",
-      "nomePlaceholder": "Ex.: Conta corrente, Reserva, Carteira...",
-      "descricao": "Descrição",
-      "descricaoPlaceholder": "Detalhes sobre esta caixa (opcional)...",
-      "descricaoDescription": "Uma descrição opcional para identificar a caixa.",
-      "genericError": "Falha ao salvar a caixa. Tente novamente."
-    }
-  },
-  "movimentacoes": {
-    "title": "Movimentações",
-    "subtitle": "Registre entradas, saídas e transferências das suas caixas.",
-    "new": "Nova movimentação",
-    "empty": "Você ainda não registrou nenhuma movimentação.",
-    "loadError": "Não foi possível carregar as movimentações. Tente novamente.",
-    "saldo": "Saldo das movimentações",
-    "unknownCaixa": "Caixa removida",
-    "createTitle": "Nova movimentação",
-    "createDescription": "Registre uma nova movimentação de caixa.",
-    "editTitle": "Editar movimentação",
-    "editDescription": "Atualize as informações desta movimentação.",
-    "tipos": {
-      "entrada": "Entrada",
-      "saida": "Saída",
-      "transferencia": "Transferência"
-    },
-    "form": {
-      "caixa": "Caixa financeira",
-      "caixaPlaceholder": "Selecione uma caixa",
-      "noCaixas": "Cadastre uma caixa financeira antes de registrar uma movimentação.",
-      "tipo": "Tipo",
-      "tipoPlaceholder": "Selecione o tipo",
-      "valor": "Valor",
-      "renda": "Renda vinculada",
-      "rendaPlaceholder": "Selecione uma renda",
-      "rendaNenhuma": "Nenhuma",
-      "rendaDescription": "Vincule esta movimentação a uma renda (opcional).",
-      "genericError": "Falha ao salvar a movimentação. Tente novamente."
-    }
-  },
-  "categoriasGastos": {
-    "title": "Categorias de Gastos",
-    "subtitle": "Organize seus gastos em categorias.",
-    "new": "Nova categoria",
-    "empty": "Você ainda não cadastrou nenhuma categoria de gasto.",
-    "loadError": "Não foi possível carregar as categorias. Tente novamente.",
-    "createTitle": "Nova categoria de gasto",
-    "createDescription": "Crie uma nova categoria para classificar seus gastos.",
-    "editTitle": "Editar categoria de gasto",
-    "editDescription": "Atualize as informações desta categoria.",
-    "form": {
-      "nome": "Nome",
-      "nomePlaceholder": "Ex.: Alimentação, Transporte, Lazer...",
-      "genericError": "Falha ao salvar a categoria. Tente novamente."
-    }
-  },
-  "gastos": {
-    "title": "Gastos",
-    "subtitle": "Registre suas despesas por caixa e categoria.",
-    "new": "Novo gasto",
-    "empty": "Você ainda não registrou nenhum gasto.",
-    "loadError": "Não foi possível carregar os gastos. Tente novamente.",
-    "total": "Total gasto",
-    "unknownCaixa": "Caixa removida",
-    "unknownCategoria": "Categoria removida",
-    "createTitle": "Novo gasto",
-    "createDescription": "Registre uma nova despesa.",
-    "editTitle": "Editar gasto",
-    "editDescription": "Atualize as informações deste gasto.",
-    "form": {
-      "caixa": "Caixa financeira",
-      "caixaPlaceholder": "Selecione uma caixa",
-      "noCaixas": "Cadastre uma caixa financeira antes de registrar um gasto.",
-      "categoria": "Categoria",
-      "categoriaPlaceholder": "Selecione uma categoria",
-      "noCategorias": "Cadastre uma categoria de gasto antes de registrar um gasto.",
-      "valorTotal": "Valor total",
-      "data": "Data do gasto",
-      "descricao": "Descrição",
-      "descricaoPlaceholder": "Detalhes sobre este gasto (opcional)...",
-      "genericError": "Falha ao salvar o gasto. Tente novamente."
-    }
-  },
-  "gastosItens": {
-    "title": "Itens de Gastos",
-    "subtitle": "Detalhe os itens que compõem cada gasto.",
-    "new": "Novo item",
-    "empty": "Você ainda não registrou nenhum item de gasto.",
-    "loadError": "Não foi possível carregar os itens. Tente novamente.",
-    "total": "Total dos itens",
-    "gastoRef": "Gasto #{{id}}",
-    "createTitle": "Novo item de gasto",
-    "createDescription": "Adicione um item a um gasto existente.",
-    "editTitle": "Editar item de gasto",
-    "editDescription": "Atualize as informações deste item.",
-    "form": {
-      "gasto": "Gasto",
-      "gastoPlaceholder": "Selecione um gasto",
-      "noGastos": "Registre um gasto antes de adicionar itens.",
-      "nome": "Nome",
-      "nomePlaceholder": "Ex.: Arroz, Gasolina, Ingresso...",
-      "valor": "Valor",
-      "motivo": "Motivo",
-      "motivoPlaceholder": "Por que este item foi comprado (opcional)...",
-      "genericError": "Falha ao salvar o item. Tente novamente."
-    }
-  },
-  "faturas": {
-    "title": "Importar Fatura",
-    "subtitle": "Importe a fatura do seu cartão exportada do Nubank (CSV ou Excel).",
-    "loadError": "Não foi possível carregar caixas e categorias. Tente novamente.",
-    "empty": "Selecione o arquivo da fatura para visualizar as transações.",
-    "reading": "Lendo o arquivo da fatura...",
-    "previewError": "Não foi possível ler o arquivo. Confira se é a fatura exportada do Nubank.",
-    "importError": "Falha ao importar a fatura. Tente novamente.",
-    "transactionsCount_one": "{{count}} transação encontrada",
-    "transactionsCount_other": "{{count}} transações encontradas",
-    "total": "Total da fatura",
-    "import": "Importar fatura",
-    "importing": "Importando...",
-    "success_one": "Fatura importada com {{count}} item.",
-    "success_other": "Fatura importada com {{count}} itens.",
-    "importAnother": "Importar outra fatura",
-    "table": {
-      "data": "Data",
-      "descricao": "Descrição",
-      "valor": "Valor"
-    },
-    "form": {
-      "arquivo": "Arquivo da fatura",
-      "arquivoHint": "Aceita .csv ou .xlsx exportado do app do Nubank.",
-      "caixa": "Caixa financeira",
-      "caixaPlaceholder": "Selecione uma caixa",
-      "noCaixas": "Cadastre uma caixa financeira antes de importar uma fatura.",
-      "categoria": "Categoria",
-      "categoriaPlaceholder": "Selecione uma categoria",
-      "noCategorias": "Cadastre uma categoria de gasto antes de importar uma fatura.",
-      "descricao": "Descrição",
-      "descricaoPlaceholder": "Ex.: Fatura Nubank agosto/2024 (opcional)..."
-    }
-  },
-  "authNavbar": {
-    "profile": "Perfil",
-    "settings": "Configurações",
-    "logout": "Sair",
-    "openMenu": "Abrir menu"
-  },
-  "login": {
-    "title": "Entrar na sua conta",
-    "description": "Insira seu email abaixo para acessar sua conta",
-    "email": "Email",
-    "password": "Senha",
-    "forgotPassword": "Esqueceu sua senha?",
-    "submit": "Entrar",
-    "submitting": "Entrando...",
-    "genericError": "Falha ao entrar. Tente novamente.",
-    "noAccount": "Não tem uma conta?",
-    "signupLink": "Cadastre-se"
-  },
-  "profile": {
-    "title": "Perfil",
-    "loading": "Carregando perfil...",
-    "loadError": "Não foi possível carregar o perfil. Tente novamente.",
-    "edit": "Editar",
-    "emptyBio": "Nenhuma bio adicionada ainda.",
-    "createTitle": "Criar perfil",
-    "createDescription": "Adicione uma bio e uma foto para completar seu perfil.",
-    "editTitle": "Editar perfil",
-    "editDescription": "Atualize as informações do seu perfil.",
-    "form": {
-      "avatarPhoto": "Foto de perfil",
-      "avatarPhotoDescription": "Envie uma imagem PNG, JPG ou WEBP de até 2 MB.",
-      "choosePhoto": "Escolher imagem",
-      "changePhoto": "Trocar imagem",
-      "bio": "Bio",
-      "bioPlaceholder": "Conte um pouco sobre você...",
-      "bioDescription": "Uma breve descrição sobre você (opcional).",
-      "create": "Criar perfil",
-      "update": "Salvar alterações",
-      "cancel": "Cancelar",
-      "submitting": "Salvando...",
-      "genericError": "Falha ao salvar o perfil. Tente novamente."
-    }
-  },
-  "signup": {
-    "title": "Crie sua conta",
-    "description": "Preencha o formulário abaixo para criar sua conta",
-    "name": "Nome completo",
-    "namePlaceholder": "João Silva",
-    "email": "Email",
-    "emailDescription": "Usaremos este email para contato. Não compartilharemos com ninguém.",
-    "password": "Senha",
-    "passwordDescription": "Deve ter pelo menos 8 caracteres.",
-    "password_confirmation": "Confirmar senha",
-    "password_confirmationDescription": "Por favor, confirme sua senha.",
-    "submit": "Criar conta",
-    "submitting": "Criando conta...",
-    "passwordMismatch": "As senhas não coincidem.",
-    "genericError": "Falha ao criar conta. Tente novamente.",
-    "orContinueWith": "Ou continue com",
-    "hasAccount": "Já tem uma conta?",
-    "loginLink": "Entrar"
-  }
+﻿{
+    "home":  {
+                 "badge":  "Sua vida financeira sob controle",
+                 "title":  "Organize suas finanças e conquiste seus objetivos",
+                 "description":  "Acompanhe receitas e despesas, crie orçamentos e visualize para onde seu dinheiro vai. Tudo em um só lugar, de forma simples e segura.",
+                 "ctaPrimary":  "Comece de graça",
+                 "ctaSecondary":  "Já tenho conta",
+                 "features":  {
+                                  "title":  "Tudo o que você precisa para cuidar do seu dinheiro",
+                                  "subtitle":  "Uma plataforma completa construída em torno de como você realmente lida com suas finanças.",
+                                  "trackTitle":  "Controle de gastos",
+                                  "trackDescription":  "Registre receitas e despesas e saiba exatamente para onde vai cada centavo.",
+                                  "budgetTitle":  "Orçamentos inteligentes",
+                                  "budgetDescription":  "Defina limites por categoria e evite gastar mais do que planejou.",
+                                  "goalsTitle":  "Metas financeiras",
+                                  "goalsDescription":  "Crie objetivos de poupança e acompanhe seu progresso até alcançá-los.",
+                                  "reportsTitle":  "Relatórios e insights",
+                                  "reportsDescription":  "Visualize gráficos claros sobre seus hábitos e tome decisões melhores.",
+                                  "alertsTitle":  "Alertas e lembretes",
+                                  "alertsDescription":  "Receba avisos de contas a vencer e quando ultrapassar seu orçamento.",
+                                  "securityTitle":  "Segurança em primeiro lugar",
+                                  "securityDescription":  "Seus dados protegidos com criptografia e os mais altos padrões de segurança."
+                              },
+                 "cta":  {
+                             "title":  "Pronto para assumir o controle?",
+                             "description":  "Organize sua vida financeira e dê o primeiro passo para realizar seus objetivos.",
+                             "button":  "Criar conta gratuita"
+                         }
+             },
+    "notFound":  {
+                     "title":  "Página não encontrada",
+                     "description":  "A página que você procura não existe ou foi movida.",
+                     "backHome":  "Voltar ao início"
+                 },
+    "navbar":  {
+                   "brand":  "Finanças",
+                   "home":  "Início",
+                   "courses":  "Cursos",
+                   "pricing":  "Preços",
+                   "login":  "Entrar",
+                   "signup":  "Cadastrar",
+                   "openMenu":  "Abrir menu"
+               },
+    "sidebar":  {
+                    "groups":  {
+                                   "overview":  "Visão geral",
+                                   "income":  "Receitas",
+                                   "expenses":  "Despesas",
+                                   "cash":  "Caixas",
+                                   "account":  "Conta"
+                               },
+                    "dashboard":  "Painel",
+                    "fontesRenda":  "Fontes de Renda",
+                    "rendas":  "Rendas",
+                    "caixas":  "Caixas Financeiras",
+                    "movimentacoes":  "Movimentações",
+                    "categoriasGastos":  "Categorias de Gastos",
+                    "gastos":  "Gastos",
+                    "gastosItens":  "Itens de Gastos",
+                    "faturas":  "Importar Fatura",
+                    "settings":  "Configurações",
+                    "profile":  "Perfil",
+                    "logout":  "Sair"
+                },
+    "common":  {
+                   "loading":  "Carregando...",
+                   "saving":  "Salvando...",
+                   "save":  "Salvar alterações",
+                   "create":  "Criar",
+                   "cancel":  "Cancelar",
+                   "edit":  "Editar",
+                   "delete":  "Excluir",
+                   "deleteConfirm":  "Tem certeza que deseja excluir este registro?",
+                   "deleteError":  "Não foi possível excluir. Tente novamente."
+               },
+    "dashboard":  {
+                      "title":  "Painel",
+                      "subtitle":  "Visão geral das suas finanças.",
+                      "loadError":  "Não foi possível carregar o painel. Tente novamente.",
+                      "empty":  "Registre rendas e gastos para visualizar os gráficos.",
+                      "income":  "Receitas",
+                      "expense":  "Despesas",
+                      "noIncome":  "Nenhuma receita no período.",
+                      "noExpenses":  "Nenhum gasto no período.",
+                      "noMovements":  "Nenhuma movimentação no período.",
+                      "filters":  {
+                                      "period":  "Período",
+                                      "period3":  "Últimos 3 meses",
+                                      "period6":  "Últimos 6 meses",
+                                      "period12":  "Últimos 12 meses",
+                                      "caixa":  "Caixa",
+                                      "allCaixas":  "Todas as caixas"
+                                  },
+                      "kpi":  {
+                                  "received":  "Total recebido",
+                                  "spent":  "Total gasto",
+                                  "balance":  "Saldo",
+                                  "expenseCount":  "Gastos registrados"
+                              },
+                      "evolution":  {
+                                        "title":  "Receitas x Despesas",
+                                        "description":  "Comparativo mensal no período selecionado."
+                                    },
+                      "expensesByCategory":  {
+                                                 "title":  "Gastos por categoria",
+                                                 "description":  "Distribuição das despesas por categoria.",
+                                                 "unknown":  "Sem categoria"
+                                             },
+                      "expensesByCaixa":  {
+                                              "title":  "Gastos por caixa",
+                                              "description":  "Total de despesas por caixa financeira.",
+                                              "unknown":  "Sem caixa"
+                                          },
+                      "movementsByCaixa":  {
+                                               "title":  "Movimentações por caixa",
+                                               "description":  "Entradas e saídas registradas por caixa.",
+                                               "entrada":  "Entradas",
+                                               "saida":  "Saídas"
+                                           },
+                      "topItems":  {
+                                       "title":  "Maiores itens de gasto",
+                                       "description":  "Itens de maior valor no período.",
+                                       "empty":  "Nenhum item de gasto no período."
+                                   },
+                      "bySource":  {
+                                       "title":  "Receitas por fonte",
+                                       "description":  "Distribuição do total por fonte de renda."
+                                   },
+                      "byType":  {
+                                     "title":  "Receitas por tipo",
+                                     "description":  "Total recebido por tipo de fonte."
+                                 }
+                  },
+    "fontesRenda":  {
+                        "title":  "Fontes de Renda",
+                        "subtitle":  "Cadastre de onde vem o seu dinheiro.",
+                        "new":  "Nova fonte",
+                        "empty":  "Você ainda não cadastrou nenhuma fonte de renda.",
+                        "loadError":  "Não foi possível carregar as fontes de renda. Tente novamente.",
+                        "createTitle":  "Nova fonte de renda",
+                        "createDescription":  "Adicione uma nova origem de receita.",
+                        "editTitle":  "Editar fonte de renda",
+                        "editDescription":  "Atualize as informações desta fonte de renda.",
+                        "tipos":  {
+                                      "salário":  "Salário",
+                                      "investimento":  "Investimento",
+                                      "extra":  "Extra",
+                                      "outro":  "Outro"
+                                  },
+                        "statuses":  {
+                                         "ativo":  "Ativo",
+                                         "inativo":  "Inativo"
+                                     },
+                        "form":  {
+                                     "nome":  "Nome",
+                                     "nomePlaceholder":  "Ex.: Salário, Freelas, Dividendos...",
+                                     "tipo":  "Tipo",
+                                     "status":  "Status",
+                                     "descricao":  "Descrição",
+                                     "descricaoPlaceholder":  "Detalhes sobre esta fonte (opcional)...",
+                                     "descricaoDescription":  "Uma descrição opcional para identificar a fonte.",
+                                     "genericError":  "Falha ao salvar a fonte de renda. Tente novamente."
+                                 }
+                    },
+    "rendas":  {
+                   "title":  "Rendas",
+                   "subtitle":  "Registre os recebimentos das suas fontes de renda.",
+                   "new":  "Nova renda",
+                   "empty":  "Você ainda não registrou nenhuma renda.",
+                   "loadError":  "Não foi possível carregar as rendas. Tente novamente.",
+                   "total":  "Total recebido",
+                   "unknownFonte":  "Fonte removida",
+                   "createTitle":  "Nova renda",
+                   "createDescription":  "Registre um novo recebimento.",
+                   "editTitle":  "Editar renda",
+                   "editDescription":  "Atualize as informações deste recebimento.",
+                   "form":  {
+                                "fonte":  "Fonte de renda",
+                                "fontePlaceholder":  "Selecione uma fonte",
+                                "noFontes":  "Cadastre uma fonte de renda antes de registrar uma renda.",
+                                "valor":  "Valor",
+                                "data":  "Data de recebimento",
+                                "descricao":  "Descrição",
+                                "descricaoPlaceholder":  "Detalhes sobre este recebimento (opcional)...",
+                                "genericError":  "Falha ao salvar a renda. Tente novamente."
+                            }
+               },
+    "caixas":  {
+                   "title":  "Caixas Financeiras",
+                   "subtitle":  "Organize seu dinheiro em diferentes caixas.",
+                   "new":  "Nova caixa",
+                   "empty":  "Você ainda não criou nenhuma caixa financeira.",
+                   "loadError":  "Não foi possível carregar as caixas. Tente novamente.",
+                   "createTitle":  "Nova caixa financeira",
+                   "createDescription":  "Crie uma nova caixa para organizar seu dinheiro.",
+                   "editTitle":  "Editar caixa financeira",
+                   "editDescription":  "Atualize as informações desta caixa.",
+                   "form":  {
+                                "nome":  "Nome",
+                                "nomePlaceholder":  "Ex.: Conta corrente, Reserva, Carteira...",
+                                "descricao":  "Descrição",
+                                "descricaoPlaceholder":  "Detalhes sobre esta caixa (opcional)...",
+                                "descricaoDescription":  "Uma descrição opcional para identificar a caixa.",
+                                "genericError":  "Falha ao salvar a caixa. Tente novamente."
+                            }
+               },
+    "movimentacoes":  {
+                          "title":  "Movimentações",
+                          "subtitle":  "Registre entradas, saídas e transferências das suas caixas.",
+                          "new":  "Nova movimentação",
+                          "empty":  "Você ainda não registrou nenhuma movimentação.",
+                          "loadError":  "Não foi possível carregar as movimentações. Tente novamente.",
+                          "saldo":  "Saldo das movimentações",
+                          "unknownCaixa":  "Caixa removida",
+                          "createTitle":  "Nova movimentação",
+                          "createDescription":  "Registre uma nova movimentação de caixa.",
+                          "editTitle":  "Editar movimentação",
+                          "editDescription":  "Atualize as informações desta movimentação.",
+                          "tipos":  {
+                                        "entrada":  "Entrada",
+                                        "saida":  "Saída",
+                                        "transferencia":  "Transferência"
+                                    },
+                          "form":  {
+                                       "caixa":  "Caixa financeira",
+                                       "caixaPlaceholder":  "Selecione uma caixa",
+                                       "noCaixas":  "Cadastre uma caixa financeira antes de registrar uma movimentação.",
+                                       "tipo":  "Tipo",
+                                       "tipoPlaceholder":  "Selecione o tipo",
+                                       "valor":  "Valor",
+                                       "renda":  "Renda vinculada",
+                                       "rendaPlaceholder":  "Selecione uma renda",
+                                       "rendaNenhuma":  "Nenhuma",
+                                       "rendaDescription":  "Vincule esta movimentação a uma renda (opcional).",
+                                       "genericError":  "Falha ao salvar a movimentação. Tente novamente."
+                                   }
+                      },
+    "categoriasGastos":  {
+                             "title":  "Categorias de Gastos",
+                             "subtitle":  "Organize seus gastos em categorias.",
+                             "new":  "Nova categoria",
+                             "empty":  "Você ainda não cadastrou nenhuma categoria de gasto.",
+                             "loadError":  "Não foi possível carregar as categorias. Tente novamente.",
+                             "createTitle":  "Nova categoria de gasto",
+                             "createDescription":  "Crie uma nova categoria para classificar seus gastos.",
+                             "editTitle":  "Editar categoria de gasto",
+                             "editDescription":  "Atualize as informações desta categoria.",
+                             "form":  {
+                                          "nome":  "Nome",
+                                          "nomePlaceholder":  "Ex.: Alimentação, Transporte, Lazer...",
+                                          "genericError":  "Falha ao salvar a categoria. Tente novamente."
+                                      }
+                         },
+    "gastos":  {
+                   "title":  "Gastos",
+                   "subtitle":  "Registre suas despesas por caixa e categoria.",
+                   "new":  "Novo gasto",
+                   "empty":  "Você ainda não registrou nenhum gasto.",
+                   "loadError":  "Não foi possível carregar os gastos. Tente novamente.",
+                   "total":  "Total gasto",
+                   "unknownCaixa":  "Caixa removida",
+                   "unknownCategoria":  "Categoria removida",
+                   "createTitle":  "Novo gasto",
+                   "createDescription":  "Registre uma nova despesa.",
+                   "editTitle":  "Editar gasto",
+                   "editDescription":  "Atualize as informações deste gasto.",
+                   "form":  {
+                                "caixa":  "Caixa financeira",
+                                "caixaPlaceholder":  "Selecione uma caixa",
+                                "noCaixas":  "Cadastre uma caixa financeira antes de registrar um gasto.",
+                                "categoria":  "Categoria",
+                                "categoriaPlaceholder":  "Selecione uma categoria",
+                                "noCategorias":  "Cadastre uma categoria de gasto antes de registrar um gasto.",
+                                "valorTotal":  "Valor total",
+                                "data":  "Data do gasto",
+                                "descricao":  "Descrição",
+                                "descricaoPlaceholder":  "Detalhes sobre este gasto (opcional)...",
+                                "genericError":  "Falha ao salvar o gasto. Tente novamente."
+                            },
+                   "analisar":  "Analisar fatura"
+               },
+    "gastosItens":  {
+                        "title":  "Itens de Gastos",
+                        "subtitle":  "Detalhe os itens que compõem cada gasto.",
+                        "new":  "Novo item",
+                        "empty":  "Você ainda não registrou nenhum item de gasto.",
+                        "loadError":  "Não foi possível carregar os itens. Tente novamente.",
+                        "total":  "Total dos itens",
+                        "gastoRef":  "Gasto #{{id}}",
+                        "createTitle":  "Novo item de gasto",
+                        "createDescription":  "Adicione um item a um gasto existente.",
+                        "editTitle":  "Editar item de gasto",
+                        "editDescription":  "Atualize as informações deste item.",
+                        "form":  {
+                                     "gasto":  "Gasto",
+                                     "gastoPlaceholder":  "Selecione um gasto",
+                                     "noGastos":  "Registre um gasto antes de adicionar itens.",
+                                     "nome":  "Nome",
+                                     "nomePlaceholder":  "Ex.: Arroz, Gasolina, Ingresso...",
+                                     "valor":  "Valor",
+                                     "motivo":  "Motivo",
+                                     "motivoPlaceholder":  "Por que este item foi comprado (opcional)...",
+                                     "genericError":  "Falha ao salvar o item. Tente novamente."
+                                 }
+                    },
+    "faturas":  {
+                    "title":  "Importar Fatura",
+                    "subtitle":  "Importe a fatura do seu cartão exportada do Nubank (CSV ou Excel).",
+                    "loadError":  "Não foi possível carregar caixas e categorias. Tente novamente.",
+                    "empty":  "Selecione o arquivo da fatura para visualizar as transações.",
+                    "reading":  "Lendo o arquivo da fatura...",
+                    "previewError":  "Não foi possível ler o arquivo. Confira se é a fatura exportada do Nubank.",
+                    "importError":  "Falha ao importar a fatura. Tente novamente.",
+                    "transactionsCount_one":  "{{count}} transação encontrada",
+                    "transactionsCount_other":  "{{count}} transações encontradas",
+                    "total":  "Total da fatura",
+                    "import":  "Importar fatura",
+                    "importing":  "Importando...",
+                    "success_one":  "Fatura importada com {{count}} item.",
+                    "success_other":  "Fatura importada com {{count}} itens.",
+                    "importAnother":  "Importar outra fatura",
+                    "table":  {
+                                  "data":  "Data",
+                                  "descricao":  "Descrição",
+                                  "valor":  "Valor"
+                              },
+                    "form":  {
+                                 "arquivo":  "Arquivo da fatura",
+                                 "arquivoHint":  "Aceita .csv ou .xlsx exportado do app do Nubank.",
+                                 "caixa":  "Caixa financeira",
+                                 "caixaPlaceholder":  "Selecione uma caixa",
+                                 "noCaixas":  "Cadastre uma caixa financeira antes de importar uma fatura.",
+                                 "categoria":  "Categoria",
+                                 "categoriaPlaceholder":  "Selecione uma categoria",
+                                 "noCategorias":  "Cadastre uma categoria de gasto antes de importar uma fatura.",
+                                 "descricao":  "Descrição",
+                                 "descricaoPlaceholder":  "Ex.: Fatura Nubank agosto/2024 (opcional)..."
+                             }
+                },
+    "authNavbar":  {
+                       "profile":  "Perfil",
+                       "settings":  "Configurações",
+                       "logout":  "Sair",
+                       "openMenu":  "Abrir menu"
+                   },
+    "login":  {
+                  "title":  "Entrar na sua conta",
+                  "description":  "Insira seu email abaixo para acessar sua conta",
+                  "email":  "Email",
+                  "password":  "Senha",
+                  "forgotPassword":  "Esqueceu sua senha?",
+                  "submit":  "Entrar",
+                  "submitting":  "Entrando...",
+                  "genericError":  "Falha ao entrar. Tente novamente.",
+                  "noAccount":  "Não tem uma conta?",
+                  "signupLink":  "Cadastre-se"
+              },
+    "profile":  {
+                    "title":  "Perfil",
+                    "loading":  "Carregando perfil...",
+                    "loadError":  "Não foi possível carregar o perfil. Tente novamente.",
+                    "edit":  "Editar",
+                    "emptyBio":  "Nenhuma bio adicionada ainda.",
+                    "createTitle":  "Criar perfil",
+                    "createDescription":  "Adicione uma bio e uma foto para completar seu perfil.",
+                    "editTitle":  "Editar perfil",
+                    "editDescription":  "Atualize as informações do seu perfil.",
+                    "form":  {
+                                 "avatarPhoto":  "Foto de perfil",
+                                 "avatarPhotoDescription":  "Envie uma imagem PNG, JPG ou WEBP de até 2 MB.",
+                                 "choosePhoto":  "Escolher imagem",
+                                 "changePhoto":  "Trocar imagem",
+                                 "bio":  "Bio",
+                                 "bioPlaceholder":  "Conte um pouco sobre você...",
+                                 "bioDescription":  "Uma breve descrição sobre você (opcional).",
+                                 "create":  "Criar perfil",
+                                 "update":  "Salvar alterações",
+                                 "cancel":  "Cancelar",
+                                 "submitting":  "Salvando...",
+                                 "genericError":  "Falha ao salvar o perfil. Tente novamente."
+                             }
+                },
+    "signup":  {
+                   "title":  "Crie sua conta",
+                   "description":  "Preencha o formulário abaixo para criar sua conta",
+                   "name":  "Nome completo",
+                   "namePlaceholder":  "João Silva",
+                   "email":  "Email",
+                   "emailDescription":  "Usaremos este email para contato. Não compartilharemos com ninguém.",
+                   "password":  "Senha",
+                   "passwordDescription":  "Deve ter pelo menos 8 caracteres.",
+                   "password_confirmation":  "Confirmar senha",
+                   "password_confirmationDescription":  "Por favor, confirme sua senha.",
+                   "submit":  "Criar conta",
+                   "submitting":  "Criando conta...",
+                   "passwordMismatch":  "As senhas não coincidem.",
+                   "genericError":  "Falha ao criar conta. Tente novamente.",
+                   "orContinueWith":  "Ou continue com",
+                   "hasAccount":  "Já tem uma conta?",
+                   "loginLink":  "Entrar"
+               },
+    "faturaDetalhe":  {
+                          "title":  "Análise da fatura",
+                          "subtitle":  "Veja as transações desta fatura por categoria, valor e período.",
+                          "loadError":  "Não foi possível carregar as transações desta fatura.",
+                          "empty":  "Esta fatura não possui transações.",
+                          "resumo":  {
+                                         "title":  "Resumo",
+                                         "bruto":  "Total em gastos",
+                                         "estornos":  "Estornos / créditos",
+                                         "liquido":  "Total líquido",
+                                         "transacoes":  "Transações",
+                                         "media":  "Média por transação",
+                                         "maior":  "Maior gasto"
+                                     },
+                          "categoria":  {
+                                            "title":  "Por categoria",
+                                            "hint":  "Categoria inferida automaticamente pelo nome do estabelecimento."
+                                        },
+                          "categorias":  {
+                                             "mercado":  "Mercado",
+                                             "alimentacao":  "Alimentação",
+                                             "transporte":  "Transporte",
+                                             "assinaturas":  "Assinaturas",
+                                             "comprasOnline":  "Compras online",
+                                             "saude":  "Saúde",
+                                             "vestuario":  "Vestuário",
+                                             "casa":  "Casa",
+                                             "servicos":  "Serviços / contas",
+                                             "outros":  "Outros"
+                                         },
+                          "ranking":  {
+                                          "title":  "Maiores transações",
+                                          "mais_one":  "+{{count}} outra transação",
+                                          "mais_other":  "+{{count}} outras transações"
+                                      },
+                          "periodo":  {
+                                          "title":  "Por período",
+                                          "semData":  "Sem data"
+                                      },
+                          "estornos":  {
+                                           "title":  "Estornos e créditos"
+                                       }
+                      }
 }

@@ -12,9 +12,10 @@ import { caixaService, categoriaGastoService, gastoService } from "@/Services/ap
 import type { CaixaFinanceira } from "@/types/caixa";
 import type { CategoriaGasto } from "@/types/categoria-gasto";
 import type { Gasto } from "@/types/gasto";
-import { Pencil, Plus, Receipt, Trash2 } from "lucide-react";
+import { BarChart3, Pencil, Plus, Receipt, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import FaturaDetalhe from "./FaturaDetalhe";
 import GastoForm from "./GastoForm";
 
 export default function Gastos() {
@@ -26,6 +27,7 @@ export default function Gastos() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [editing, setEditing] = useState<Gasto | null | undefined>(undefined);
+  const [analisando, setAnalisando] = useState<Gasto | null>(null);
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
@@ -162,6 +164,14 @@ export default function Gastos() {
                     <Button
                       variant="ghost"
                       size="icon"
+                      onClick={() => setAnalisando(gasto)}
+                      aria-label={t("gastos.analisar")}
+                    >
+                      <BarChart3 className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
                       onClick={() => setEditing(gasto)}
                       aria-label={t("common.edit")}
                     >
@@ -210,6 +220,28 @@ export default function Gastos() {
                 onCancel={() => setEditing(undefined)}
               />
             )}
+          </div>
+        </SheetContent>
+      </Sheet>
+
+      <Sheet
+        open={analisando !== null}
+        onOpenChange={(open) => !open && setAnalisando(null)}
+      >
+        <SheetContent className="overflow-y-auto sm:max-w-lg">
+          <SheetHeader>
+            <SheetTitle>{t("faturaDetalhe.title")}</SheetTitle>
+            <SheetDescription>
+              {analisando
+                ? `${
+                    categoriaById.get(analisando.categoria_id)?.nome ??
+                    t("gastos.unknownCategoria")
+                  } · ${formatCurrency(analisando.valor_total)}`
+                : t("faturaDetalhe.subtitle")}
+            </SheetDescription>
+          </SheetHeader>
+          <div className="px-4 pb-4">
+            {analisando && <FaturaDetalhe gastoId={analisando.id} />}
           </div>
         </SheetContent>
       </Sheet>
