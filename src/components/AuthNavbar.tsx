@@ -24,6 +24,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 export default function AuthNavbar() {
   const { t } = useTranslation();
   const { user, logout } = useAuth();
+
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
 
