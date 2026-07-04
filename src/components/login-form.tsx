@@ -13,6 +13,7 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
+
 import { Input } from "@/components/ui/input";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -39,7 +40,9 @@ export function LoginForm({
   const redirectTo =
     (location.state as LocationState | null)?.from?.pathname ?? "/dashboard";
 
-  const handleSubmit: React.ComponentProps<"form">["onSubmit"] = async event => {
+  const handleSubmit: React.ComponentProps<"form">["onSubmit"] = async (
+    event,
+  ) => {
     event.preventDefault();
     setError(null);
     setIsSubmitting(true);
@@ -72,13 +75,15 @@ export function LoginForm({
                   type="email"
                   placeholder="m@example.com"
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </Field>
               <Field>
                 <div className="flex items-center">
-                  <FieldLabel htmlFor="password">{t("login.password")}</FieldLabel>
+                  <FieldLabel htmlFor="password">
+                    {t("login.password")}
+                  </FieldLabel>
                   <a
                     href="#"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
@@ -90,7 +95,7 @@ export function LoginForm({
                   id="password"
                   type="password"
                   value={password}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </Field>
@@ -117,4 +122,3 @@ export function LoginForm({
     </div>
   );
 }
-
