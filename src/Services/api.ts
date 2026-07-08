@@ -21,6 +21,7 @@ import type {
 } from "@/types/categoria-gasto";
 import type { Gasto, GastoComItens, GastoInput } from "@/types/gasto";
 import type { GastoItem, GastoItemInput } from "@/types/gasto-item";
+import type { Pessoa, PessoaInput } from "@/types/pessoa";
 import type {
   FaturaImportada,
   FaturaPreview,
@@ -158,6 +159,9 @@ export const gastoService = {
 };
 
 export const faturaService = {
+  /** Lista os gastos que são faturas de cartão (com contagem de itens). */
+  list: () => api.get<Wrapped<Gasto[]>>("/faturas").then(unwrap),
+
   /** Lê o arquivo da fatura e devolve as transações encontradas, sem persistir. */
   preview: (arquivo: File) => {
     const form = new FormData();
@@ -190,5 +194,23 @@ export const gastoItemService = {
   update: (id: number, input: GastoItemInput) =>
     api.put<Wrapped<GastoItem>>(`/gastos-itens/${id}`, input).then(unwrap),
 
+  /** Atribui (ou remove, com null) a pessoa responsável por um item da fatura. */
+  atribuirPessoa: (id: number, pessoa_id: number | null) =>
+    api
+      .patch<Wrapped<GastoItem>>(`/gastos-itens/${id}/pessoa`, { pessoa_id })
+      .then(unwrap),
+
   remove: (id: number) => api.del<void>(`/gastos-itens/${id}`),
+};
+
+export const pessoaService = {
+  list: () => api.get<Wrapped<Pessoa[]>>("/pessoas").then(unwrap),
+
+  create: (input: PessoaInput) =>
+    api.post<Wrapped<Pessoa>>("/pessoas", input).then(unwrap),
+
+  update: (id: number, input: PessoaInput) =>
+    api.put<Wrapped<Pessoa>>(`/pessoas/${id}`, input).then(unwrap),
+
+  remove: (id: number) => api.del<void>(`/pessoas/${id}`),
 };

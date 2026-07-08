@@ -92,6 +92,9 @@ export interface ItemAnalisado {
   valor: number;
   data: string | null;
   categoria: string;
+  pessoaId: number | null;
+  pessoaNome: string | null;
+  pessoaCor: string | null;
 }
 
 export interface GrupoCategoria {
@@ -107,6 +110,24 @@ export interface BucketPeriodo {
   count: number;
 }
 
+/** Total gasto por pessoa ("valores a calcular"). pessoaId null = não atribuído. */
+export interface GrupoPessoa {
+  pessoaId: number | null;
+  nome: string | null;
+  cor: string | null;
+  total: number;
+  count: number;
+  percentual: number;
+}
+
+/**
+ * Filtro de pessoa aplicado à análise:
+ * - `undefined` = todas as pessoas;
+ * - `null` = apenas itens não atribuídos;
+ * - `number` = apenas a pessoa com esse id.
+ */
+export type FiltroPessoa = number | null | undefined;
+
 export interface FaturaAnalise {
   totalBruto: number;
   totalEstornos: number;
@@ -121,20 +142,38 @@ export interface FaturaAnalise {
   ranking: ItemAnalisado[];
   estornos: ItemAnalisado[];
   porPeriodo: BucketPeriodo[];
+  /** Sempre calculado sobre todos os itens (não sofre o filtro de pessoa). */
+  porPessoa: GrupoPessoa[];
 }
 
 /**
  * Calcula todas as análises de uma fatura/gasto a partir dos seus itens.
  * Convenção: valor positivo = gasto; valor negativo = estorno/crédito.
  */
-export function analisarFatura(itens: GastoItem[]): FaturaAnalise {
-  const analisados: ItemAnalisado[] = itens.map((item) => ({
+export function analisarFatura(
+  itens: GastoItem[],
+  filtroPessoa?: FiltroPessoa,
+): FaturaAnalise {
+  const todos: ItemAnalisado[] = itens.map((item) => ({
     id: item.id,
     nome: item.nome,
     valor: Number(item.valor),
     data: item.data_transacao,
     categoria: inferirCategoria(item.nome),
+    pessoaId: item.pessoa_id ?? null,
+    pessoaNome: item.pessoa?.nome ?? null,
+    pessoaCor: item.pessoa?.cor ?? null,
   }));
+
+  // "Valores a calcular por pessoa": sempre sobre TODOS os itens (gastos),
+  // independentemente do filtro de pessoa aplicado aos demais cálculos.
+  const porPessoa = agruparPorPessoa(todos.filter((i) => i.valor > 0));
+
+  // Aplica o filtro de pessoa ao restante da análise.
+  const analisados =
+    filtroPessoa === undefined
+      ? todos
+      : todos.filter((i) => i.pessoaId === filtroPessoa);
 
   const gastos = analisados.filter((i) => i.valor > 0);
   const estornos = analisados.filter((i) => i.valor < 0);
@@ -203,5 +242,40 @@ export function analisarFatura(itens: GastoItem[]): FaturaAnalise {
     ranking,
     estornos: estornosOrdenados,
     porPeriodo,
+    porPessoa,
   };
+}
+
+/**
+ * Agrupa itens (gastos) por pessoa, incluindo um bucket "não atribuído"
+ * (pessoaId null). Ordena por total desc, mas mantém "não atribuído" por último.
+ */
+function agruparPorPessoa(gastos: ItemAnalisado[]): GrupoPessoa[] {
+  const total = gastos.reduce((s, i) => s + i.valor, 0);
+  const mapa = new Map<number | null, GrupoPessoa>();
+
+  for (const item of gastos) {
+    const atual = mapa.get(item.pessoaId) ?? {
+      pessoaId: item.pessoaId,
+      nome: item.pessoaNome,
+      cor: item.pessoaCor,
+      total: 0,
+      count: 0,
+      percentual: 0,
+    };
+    atual.total += item.valor;
+    atual.count += 1;
+    mapa.set(item.pessoaId, atual);
+  }
+
+  return [...mapa.values()]
+    .map((g) => ({
+      ...g,
+      percentual: total ? (g.total / total) * 100 : 0,
+    }))
+    .sort((a, b) => {
+      if (a.pessoaId === null) return 1;
+      if (b.pessoaId === null) return -1;
+      return b.total - a.total;
+    });
 }

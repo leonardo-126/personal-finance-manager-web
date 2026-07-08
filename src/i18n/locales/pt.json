@@ -57,7 +57,8 @@
                     "categoriasGastos":  "Categorias de Gastos",
                     "gastos":  "Gastos",
                     "gastosItens":  "Itens de Gastos",
-                    "faturas":  "Importar Fatura",
+                    "faturas":  "Faturas",
+                    "pessoas":  "Pessoas",
                     "settings":  "Configurações",
                     "profile":  "Perfil",
                     "logout":  "Sair"
@@ -251,6 +252,25 @@
                                           "genericError":  "Falha ao salvar a categoria. Tente novamente."
                                       }
                          },
+    "pessoas":  {
+                    "title":  "Pessoas",
+                    "subtitle":  "Cadastre quem usou seu cartão para dividir os gastos das faturas.",
+                    "new":  "Nova pessoa",
+                    "empty":  "Você ainda não cadastrou nenhuma pessoa.",
+                    "loadError":  "Não foi possível carregar as pessoas. Tente novamente.",
+                    "createTitle":  "Nova pessoa",
+                    "createDescription":  "Cadastre uma pessoa que usou seu cartão.",
+                    "editTitle":  "Editar pessoa",
+                    "editDescription":  "Atualize as informações desta pessoa.",
+                    "form":  {
+                                 "nome":  "Nome",
+                                 "nomePlaceholder":  "Ex.: Maria, João, Colega...",
+                                 "cor":  "Cor",
+                                 "email":  "E-mail (opcional)",
+                                 "emailPlaceholder":  "Para convidar a pessoa no futuro",
+                                 "genericError":  "Falha ao salvar a pessoa. Tente novamente."
+                             }
+                },
     "gastos":  {
                    "title":  "Gastos",
                    "subtitle":  "Registre suas despesas por caixa e categoria.",
@@ -304,7 +324,17 @@
                                  }
                     },
     "faturas":  {
-                    "title":  "Importar Fatura",
+                    "title":  "Faturas",
+                    "listSubtitle":  "Faturas de cartão importadas. Clique em uma para ver a análise.",
+                    "listEmpty":  "Você ainda não importou nenhuma fatura.",
+                    "listError":  "Não foi possível carregar as faturas. Tente novamente.",
+                    "importarNova":  "Importar fatura",
+                    "importarTitle":  "Importar Fatura",
+                    "verFatura":  "Ver fatura",
+                    "voltar":  "Voltar para faturas",
+                    "semDescricao":  "Fatura sem descrição",
+                    "transacoesCount_one":  "{{count}} transação",
+                    "transacoesCount_other":  "{{count}} transações",
                     "subtitle":  "Importe a fatura do seu cartão exportada do Nubank (CSV ou Excel).",
                     "loadError":  "Não foi possível carregar caixas e categorias. Tente novamente.",
                     "empty":  "Selecione o arquivo da fatura para visualizar as transações.",
@@ -404,6 +434,14 @@
                           "subtitle":  "Veja as transações desta fatura por categoria, valor e período.",
                           "loadError":  "Não foi possível carregar as transações desta fatura.",
                           "empty":  "Esta fatura não possui transações.",
+                          "pessoas":  {
+                                          "title":  "Valores a calcular por pessoa",
+                                          "hint":  "Some o quanto cada pessoa gastou nesta fatura. Atribua as transações no ranking abaixo.",
+                                          "filtroLabel":  "Filtrar por pessoa",
+                                          "todos":  "Todas as pessoas",
+                                          "semPessoa":  "Não atribuído",
+                                          "vazio":  "Nenhum gasto para exibir."
+                                      },
                           "resumo":  {
                                          "title":  "Resumo",
                                          "bruto":  "Total em gastos",
@@ -431,6 +469,10 @@
                                          },
                           "ranking":  {
                                           "title":  "Maiores transações",
+                                          "descricao":  "Descrição",
+                                          "data":  "Data",
+                                          "pessoa":  "Pessoa",
+                                          "valor":  "Valor",
                                           "mais_one":  "+{{count}} outra transação",
                                           "mais_other":  "+{{count}} outras transações"
                                       },

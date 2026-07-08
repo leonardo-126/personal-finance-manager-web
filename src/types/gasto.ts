@@ -5,6 +5,9 @@ export interface Gasto {
   categoria_id: number;
   valor_total: string;
   descricao: string | null;
+  is_fatura: boolean;
+  /** Presente apenas na listagem de faturas (GET /faturas). */
+  itens_count?: number;
   data_gasto: string;
   created_at: string;
   updated_at: string;
