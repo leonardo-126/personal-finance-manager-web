@@ -43,6 +43,11 @@ const features = [
     titleKey: "home.features.securityTitle",
     descriptionKey: "home.features.securityDescription",
   },
+  {
+    icon: ShieldCheck,
+    titleKey: "home.features.securityTitle",
+    descriptionKey: "home.features.securityDescription",
+  },
 ];
 
 export default function Home() {
