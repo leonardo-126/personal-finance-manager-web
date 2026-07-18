@@ -484,6 +484,27 @@
                                            "title":  "Estornos e créditos",
                                            "hint":  "Desmarque um estorno para não abatê-lo do total líquido.",
                                            "abater":  "Abater \"{{nome}}\" do total líquido"
-                                       }
-                      }
+                                       },
+                          "compartilhar":  {
+                                               "title":  "Compartilhar com as pessoas",
+                                               "hint":  "Gere um link para cada pessoa. Ela abre sem precisar de conta e marca os itens que são dela.",
+                                               "semPessoas":  "Cadastre pessoas para poder compartilhar.",
+                                               "gerar":  "Gerar link",
+                                               "copiar":  "Copiar link",
+                                               "copiado":  "Copiado!",
+                                               "revogar":  "Revogar link",
+                                               "erro":  "Não foi possível atualizar o compartilhamento."
+                                           }
+                      },
+      "faturaCompartilhada":  {
+                                 "title":  "Fatura compartilhada",
+                                 "loadError":  "Não foi possível abrir esta fatura. O link pode ter expirado.",
+                                 "ola":  "Olá, {{nome}}",
+                                 "hintTitle":  "Marque o que é seu",
+                                 "hint":  "Toque nos itens que são seus. A pessoa que compartilhou vê tudo em tempo real.",
+                                 "seuTotal":  "Seu total",
+                                 "marcar":  "Marcar \"{{nome}}\" como meu",
+                                 "de":  "de {{nome}}",
+                                 "rodape":  "Suas marcações são salvas automaticamente."
+                             }
 }

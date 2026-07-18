@@ -15,12 +15,19 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { formatCurrency, formatDate } from "@/lib/format";
 import { analisarFatura, type FaturaAnalise } from "@/lib/faturaAnalise";
-import { gastoService, gastoItemService, pessoaService } from "@/Services/api";
+import {
+  gastoService,
+  gastoItemService,
+  pessoaService,
+  faturaShareService,
+} from "@/Services/api";
 import type { GastoComItens } from "@/types/gasto";
 import type { Pessoa } from "@/types/pessoa";
+import type { FaturaShare } from "@/types/fatura-share";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Cell, Pie, PieChart } from "recharts";
+import { Check, Copy, Link2, Trash2 } from "lucide-react";
 
 interface Props {
   gastoId: number;
@@ -52,16 +59,25 @@ export default function FaturaDetalhe({ gastoId }: Props) {
   const [estornosExcluidos, setEstornosExcluidos] = useState<Set<number>>(
     () => new Set(),
   );
+  // Links de compartilhamento existentes (um por pessoa) desta fatura.
+  const [shares, setShares] = useState<FaturaShare[]>([]);
+  // Feedback "copiado" temporário, por pessoa.
+  const [copiadoPessoaId, setCopiadoPessoaId] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([gastoService.show(gastoId), pessoaService.list()])
-      .then(([gastoData, pessoasData]) => {
+    Promise.all([
+      gastoService.show(gastoId),
+      pessoaService.list(),
+      faturaShareService.list(gastoId).catch(() => [] as FaturaShare[]),
+    ])
+      .then(([gastoData, pessoasData, sharesData]) => {
         if (cancelled) return;
         setGasto(gastoData);
         setPessoas(pessoasData);
+        setShares(sharesData);
       })
       .catch(() => {
         if (!cancelled) setError(t("faturaDetalhe.loadError"));
@@ -73,6 +89,45 @@ export default function FaturaDetalhe({ gastoId }: Props) {
       cancelled = true;
     };
   }, [gastoId, t]);
+
+  /** Monta a URL pública a partir do token do compartilhamento. */
+  const urlDoShare = (token: string) =>
+    `${window.location.origin}/f/${token}`;
+
+  /** Gera (ou reaproveita) o link da pessoa e copia para a área de transferência. */
+  const gerarECopiar = async (pessoaId: number) => {
+    try {
+      const share = await faturaShareService.create(gastoId, pessoaId);
+      setShares((prev) => {
+        const semDuplicar = prev.filter((s) => s.pessoa_id !== pessoaId);
+        return [...semDuplicar, share];
+      });
+      await copiarLink(pessoaId, share.token);
+    } catch {
+      setError(t("faturaDetalhe.compartilhar.erro"));
+    }
+  };
+
+  /** Copia o link e mostra o feedback "copiado" por alguns instantes. */
+  const copiarLink = async (pessoaId: number, token: string) => {
+    try {
+      await navigator.clipboard.writeText(urlDoShare(token));
+      setCopiadoPessoaId(pessoaId);
+      window.setTimeout(() => setCopiadoPessoaId(null), 2000);
+    } catch {
+      // Clipboard indisponível (ex.: sem HTTPS) — silencioso.
+    }
+  };
+
+  /** Revoga o link de uma pessoa (deixa de funcionar imediatamente). */
+  const revogarLink = async (pessoaId: number) => {
+    try {
+      await faturaShareService.remove(gastoId, pessoaId);
+      setShares((prev) => prev.filter((s) => s.pessoa_id !== pessoaId));
+    } catch {
+      setError(t("faturaDetalhe.compartilhar.erro"));
+    }
+  };
 
   // Converte o valor do Select no filtro esperado por analisarFatura.
   const filtroPessoa = useMemo(() => {
@@ -198,6 +253,82 @@ export default function FaturaDetalhe({ gastoId }: Props) {
           </SelectContent>
         </Select>
       </div>
+
+      {/* Compartilhar a fatura com cada pessoa (link único por pessoa) */}
+      <Card>
+        <CardContent className="p-4">
+          <h3 className="text-sm font-semibold">
+            {t("faturaDetalhe.compartilhar.title")}
+          </h3>
+          <p className="mb-3 text-xs text-muted-foreground">
+            {t("faturaDetalhe.compartilhar.hint")}
+          </p>
+          {pessoas.length === 0 ? (
+            <p className="text-sm text-muted-foreground">
+              {t("faturaDetalhe.compartilhar.semPessoas")}
+            </p>
+          ) : (
+            <div className="flex flex-col gap-2">
+              {pessoas.map((pessoa) => {
+                const share = shares.find((s) => s.pessoa_id === pessoa.id);
+                const copiado = copiadoPessoaId === pessoa.id;
+                return (
+                  <div
+                    key={pessoa.id}
+                    className="flex items-center justify-between gap-3"
+                  >
+                    <span className="flex min-w-0 items-center gap-2 text-sm">
+                      <span
+                        className="h-3 w-3 shrink-0 rounded-full"
+                        style={{ backgroundColor: pessoa.cor ?? COR_SEM_PESSOA }}
+                      />
+                      <span className="truncate">{pessoa.nome}</span>
+                    </span>
+                    <div className="flex shrink-0 items-center gap-1">
+                      {share ? (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => copiarLink(pessoa.id, share.token)}
+                            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-xs hover:bg-muted"
+                          >
+                            {copiado ? (
+                              <Check className="h-3.5 w-3.5 text-emerald-600" />
+                            ) : (
+                              <Copy className="h-3.5 w-3.5" />
+                            )}
+                            {copiado
+                              ? t("faturaDetalhe.compartilhar.copiado")
+                              : t("faturaDetalhe.compartilhar.copiar")}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => revogarLink(pessoa.id)}
+                            aria-label={t("faturaDetalhe.compartilhar.revogar")}
+                            title={t("faturaDetalhe.compartilhar.revogar")}
+                            className="inline-flex items-center rounded-md border px-2 py-1 text-xs text-destructive hover:bg-muted"
+                          >
+                            <Trash2 className="h-3.5 w-3.5" />
+                          </button>
+                        </>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => gerarECopiar(pessoa.id)}
+                          className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-xs hover:bg-muted"
+                        >
+                          <Link2 className="h-3.5 w-3.5" />
+                          {t("faturaDetalhe.compartilhar.gerar")}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Valores a calcular por pessoa */}
       <Card>

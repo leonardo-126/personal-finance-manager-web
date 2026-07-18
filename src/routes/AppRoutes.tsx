@@ -10,6 +10,7 @@ import Dashboard from "@/pages/pages/Dashboard";
 import Faturas from "@/pages/pages/Faturas";
 import FaturaImportar from "@/pages/pages/FaturaImportar";
 import FaturaDetalhePage from "@/pages/pages/FaturaDetalhePage";
+import FaturaCompartilhada from "@/pages/pages/FaturaCompartilhada";
 import FontesRenda from "@/pages/pages/FontesRenda";
 import Gastos from "@/pages/pages/Gastos";
 import GastosItens from "@/pages/pages/GastosItens";
@@ -47,6 +48,9 @@ export default function AppRoutes() {
           <Route path="pessoas" element={<Pessoas />} />
         </Route>
       </Route>
+
+      {/* Fatura compartilhada — acesso público por token (sem login) */}
+      <Route path="f/:token" element={<FaturaCompartilhada />} />
 
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />

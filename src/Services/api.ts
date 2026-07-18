@@ -22,6 +22,7 @@ import type {
 import type { Gasto, GastoComItens, GastoInput } from "@/types/gasto";
 import type { GastoItem, GastoItemInput } from "@/types/gasto-item";
 import type { Pessoa, PessoaInput } from "@/types/pessoa";
+import type { FaturaShare, FaturaPublica } from "@/types/fatura-share";
 import type {
   FaturaImportada,
   FaturaPreview,
@@ -213,4 +214,45 @@ export const pessoaService = {
     api.put<Wrapped<Pessoa>>(`/pessoas/${id}`, input).then(unwrap),
 
   remove: (id: number) => api.del<void>(`/pessoas/${id}`),
+};
+
+/**
+ * Compartilhamento de fatura — visão do DONO (autenticado): gera/lista/revoga
+ * o link por pessoa. O front compõe a URL final com `window.location.origin`.
+ */
+export const faturaShareService = {
+  list: (gastoId: number) =>
+    api
+      .get<Wrapped<FaturaShare[]>>(`/gastos/${gastoId}/compartilhamentos`)
+      .then(unwrap),
+
+  create: (gastoId: number, pessoaId: number) =>
+    api
+      .post<Wrapped<FaturaShare>>(`/gastos/${gastoId}/compartilhamentos`, {
+        pessoa_id: pessoaId,
+      })
+      .then(unwrap),
+
+  remove: (gastoId: number, pessoaId: number) =>
+    api.del<void>(`/gastos/${gastoId}/compartilhamentos/${pessoaId}`),
+};
+
+/**
+ * Acesso PÚBLICO à fatura via token (a pessoa que recebeu o link).
+ * Não exige login; `csrfCookie()` é chamado antes das mutações.
+ */
+export const faturaPublicaService = {
+  show: (token: string) =>
+    api
+      .get<Wrapped<FaturaPublica>>(`/fatura-compartilhada/${token}`)
+      .then(unwrap),
+
+  /** Marca (meu=true) ou desmarca (meu=false) um item como sendo da pessoa. */
+  marcarItem: (token: string, itemId: number, meu: boolean) =>
+    api
+      .patch<Wrapped<GastoItem>>(
+        `/fatura-compartilhada/${token}/itens/${itemId}`,
+        { meu },
+      )
+      .then(unwrap),
 };
