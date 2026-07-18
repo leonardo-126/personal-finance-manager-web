@@ -149,10 +149,15 @@ export interface FaturaAnalise {
 /**
  * Calcula todas as análises de uma fatura/gasto a partir dos seus itens.
  * Convenção: valor positivo = gasto; valor negativo = estorno/crédito.
+ *
+ * `estornosExcluidos` lista ids de estornos que o usuário optou por NÃO
+ * abater do total (ficam de fora de `totalEstornos`/`totalLiquido`), mas
+ * continuam aparecendo na lista de estornos para poder reincluí-los.
  */
 export function analisarFatura(
   itens: GastoItem[],
   filtroPessoa?: FiltroPessoa,
+  estornosExcluidos?: ReadonlySet<number>,
 ): FaturaAnalise {
   const todos: ItemAnalisado[] = itens.map((item) => ({
     id: item.id,
@@ -178,8 +183,13 @@ export function analisarFatura(
   const gastos = analisados.filter((i) => i.valor > 0);
   const estornos = analisados.filter((i) => i.valor < 0);
 
+  // Estornos efetivamente considerados no cálculo (os não excluídos pelo usuário).
+  const estornosConsiderados = estornosExcluidos
+    ? estornos.filter((i) => !estornosExcluidos.has(i.id))
+    : estornos;
+
   const totalBruto = gastos.reduce((s, i) => s + i.valor, 0);
-  const totalEstornos = estornos.reduce((s, i) => s - i.valor, 0); // valor abs
+  const totalEstornos = estornosConsiderados.reduce((s, i) => s - i.valor, 0); // valor abs
   const totalLiquido = totalBruto - totalEstornos;
 
   const ranking = [...gastos].sort((a, b) => b.valor - a.valor);

@@ -481,7 +481,9 @@
                                           "semData":  "Sem data"
                                       },
                           "estornos":  {
-                                           "title":  "Estornos e créditos"
+                                           "title":  "Estornos e créditos",
+                                           "hint":  "Desmarque um estorno para não abatê-lo do total líquido.",
+                                           "abater":  "Abater \"{{nome}}\" do total líquido"
                                        }
                       }
 }

@@ -48,6 +48,10 @@ export default function FaturaDetalhe({ gastoId }: Props) {
   const [gasto, setGasto] = useState<GastoComItens | null>(null);
   const [pessoas, setPessoas] = useState<Pessoa[]>([]);
   const [filtro, setFiltro] = useState<string>(FILTRO_TODOS);
+  // Ids de estornos que o usuário optou por NÃO abater do total (só nesta tela).
+  const [estornosExcluidos, setEstornosExcluidos] = useState<Set<number>>(
+    () => new Set(),
+  );
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -78,15 +82,28 @@ export default function FaturaDetalhe({ gastoId }: Props) {
   }, [filtro]);
 
   const analise = useMemo<FaturaAnalise | null>(
-    () => (gasto ? analisarFatura(gasto.itens, filtroPessoa) : null),
-    [gasto, filtroPessoa],
+    () =>
+      gasto
+        ? analisarFatura(gasto.itens, filtroPessoa, estornosExcluidos)
+        : null,
+    [gasto, filtroPessoa, estornosExcluidos],
   );
+
+  /** Inclui/exclui um estorno do cálculo do total líquido (apenas nesta tela). */
+  const toggleEstorno = (itemId: number) => {
+    setEstornosExcluidos((prev) => {
+      const proximo = new Set(prev);
+      if (proximo.has(itemId)) proximo.delete(itemId);
+      else proximo.add(itemId);
+      return proximo;
+    });
+  };
 
   /** Atribui/remove a pessoa de um item e atualiza o estado local (recalcula ao vivo). */
   const handleAtribuir = async (itemId: number, valor: string) => {
     const pessoaId = valor === FILTRO_SEM_PESSOA ? null : Number(valor);
     const pessoa = pessoaId
-      ? pessoas.find((p) => p.id === pessoaId) ?? null
+      ? (pessoas.find((p) => p.id === pessoaId) ?? null)
       : null;
 
     // Atualização otimista.
@@ -121,7 +138,9 @@ export default function FaturaDetalhe({ gastoId }: Props) {
   };
 
   if (isLoading) {
-    return <p className="text-sm text-muted-foreground">{t("common.loading")}</p>;
+    return (
+      <p className="text-sm text-muted-foreground">{t("common.loading")}</p>
+    );
   }
   if (error) {
     return (
@@ -134,7 +153,9 @@ export default function FaturaDetalhe({ gastoId }: Props) {
 
   if (gasto.itens.length === 0) {
     return (
-      <p className="text-sm text-muted-foreground">{t("faturaDetalhe.empty")}</p>
+      <p className="text-sm text-muted-foreground">
+        {t("faturaDetalhe.empty")}
+      </p>
     );
   }
 
@@ -305,6 +326,62 @@ export default function FaturaDetalhe({ gastoId }: Props) {
         </CardContent>
       </Card>
 
+      {/* Estornos / créditos (se houver) */}
+      {analise.estornos.length > 0 && (
+        <Card>
+          <CardContent className="p-4">
+            <h3 className="text-sm font-semibold">
+              {t("faturaDetalhe.estornos.title")}
+            </h3>
+            <p className="mb-3 text-xs text-muted-foreground">
+              {t("faturaDetalhe.estornos.hint")}
+            </p>
+            <Separator className="mb-2" />
+            <div className="flex flex-col">
+              {analise.estornos.map((item) => {
+                const excluido = estornosExcluidos.has(item.id);
+                return (
+                  <label
+                    key={item.id}
+                    className="flex cursor-pointer items-center justify-between gap-3 border-t py-2 text-sm first:border-t-0"
+                  >
+                    <span className="flex min-w-0 items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={!excluido}
+                        onChange={() => toggleEstorno(item.id)}
+                        className="h-4 w-4 shrink-0 accent-emerald-600"
+                        aria-label={t("faturaDetalhe.estornos.abater", {
+                          nome: item.nome,
+                        })}
+                      />
+                      <span
+                        className={
+                          excluido
+                            ? "truncate text-muted-foreground line-through"
+                            : "truncate"
+                        }
+                      >
+                        {item.nome}
+                      </span>
+                    </span>
+                    <span
+                      className={
+                        excluido
+                          ? "whitespace-nowrap font-medium text-muted-foreground line-through"
+                          : "whitespace-nowrap font-medium text-emerald-600"
+                      }
+                    >
+                      {formatCurrency(item.valor)}
+                    </span>
+                  </label>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Por categoria (inferida) */}
       <Card>
         <CardContent className="p-4">
@@ -442,31 +519,6 @@ export default function FaturaDetalhe({ gastoId }: Props) {
           </div>
         </CardContent>
       </Card>
-
-      {/* Estornos / créditos (se houver) */}
-      {analise.estornos.length > 0 && (
-        <Card>
-          <CardContent className="p-4">
-            <h3 className="mb-3 text-sm font-semibold">
-              {t("faturaDetalhe.estornos.title")}
-            </h3>
-            <Separator className="mb-2" />
-            <div className="flex flex-col">
-              {analise.estornos.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between gap-3 border-t py-2 text-sm first:border-t-0"
-                >
-                  <span className="truncate">{item.nome}</span>
-                  <span className="whitespace-nowrap font-medium text-emerald-600">
-                    {formatCurrency(item.valor)}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 }
