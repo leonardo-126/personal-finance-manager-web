@@ -494,7 +494,14 @@
                                                "copiado":  "Copiado!",
                                                "revogar":  "Revogar link",
                                                "erro":  "Não foi possível atualizar o compartilhamento."
-                                           }
+                                           },
+                          "exportar":  {
+                                           "botao":  "Exportar Excel",
+                                           "aba":  "Transações",
+                                           "filtro":  "Pessoa",
+                                           "categoria":  "Categoria",
+                                           "erro":  "Não foi possível gerar o Excel."
+                                       }
                       },
       "faturaCompartilhada":  {
                                  "title":  "Fatura compartilhada",

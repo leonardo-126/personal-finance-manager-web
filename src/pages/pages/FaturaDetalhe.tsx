@@ -15,6 +15,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { formatCurrency, formatDate } from "@/lib/format";
 import { analisarFatura, type FaturaAnalise } from "@/lib/faturaAnalise";
+import { exportarFaturaXlsx } from "@/lib/exportFatura";
 import {
   gastoService,
   gastoItemService,
@@ -27,7 +28,7 @@ import type { FaturaShare } from "@/types/fatura-share";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Cell, Pie, PieChart } from "recharts";
-import { Check, Copy, Link2, Trash2 } from "lucide-react";
+import { Check, Copy, Download, Link2, Trash2 } from "lucide-react";
 
 interface Props {
   gastoId: number;
@@ -144,6 +145,24 @@ export default function FaturaDetalhe({ gastoId }: Props) {
     [gasto, filtroPessoa, estornosExcluidos],
   );
 
+  /** Exporta um .xlsx respeitando o filtro por pessoa atualmente aplicado. */
+  const exportarExcel = () => {
+    if (!analise || !gasto) return;
+    const pessoaFiltroNome =
+      filtro === FILTRO_TODOS
+        ? null
+        : filtro === FILTRO_SEM_PESSOA
+          ? t("faturaDetalhe.pessoas.semPessoa")
+          : (pessoas.find((p) => p.id === Number(filtro))?.nome ?? null);
+
+    exportarFaturaXlsx({
+      analise,
+      faturaNome: gasto.descricao || t("faturaDetalhe.title"),
+      pessoaFiltroNome,
+      t,
+    }).catch(() => setError(t("faturaDetalhe.exportar.erro")));
+  };
+
   /** Inclui/exclui um estorno do cálculo do total líquido (apenas nesta tela). */
   const toggleEstorno = (itemId: number) => {
     setEstornosExcluidos((prev) => {
@@ -229,12 +248,21 @@ export default function FaturaDetalhe({ gastoId }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Filtro por pessoa */}
+      {/* Filtro por pessoa + exportação */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h3 className="text-sm font-semibold">
           {t("faturaDetalhe.pessoas.filtroLabel")}
         </h3>
-        <Select value={filtro} onValueChange={setFiltro}>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={exportarExcel}
+            className="inline-flex items-center gap-1.5 rounded-md border px-3 py-2 text-sm hover:bg-muted"
+          >
+            <Download className="h-4 w-4" />
+            {t("faturaDetalhe.exportar.botao")}
+          </button>
+          <Select value={filtro} onValueChange={setFiltro}>
           <SelectTrigger className="w-56">
             <SelectValue />
           </SelectTrigger>
@@ -252,6 +280,7 @@ export default function FaturaDetalhe({ gastoId }: Props) {
             ))}
           </SelectContent>
         </Select>
+        </div>
       </div>
 
       {/* Compartilhar a fatura com cada pessoa (link único por pessoa) */}
