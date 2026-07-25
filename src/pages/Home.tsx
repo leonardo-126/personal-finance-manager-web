@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
-  Bell,
-  PiggyBank,
-  ShieldCheck,
+  FileSpreadsheet,
+  FileUp,
+  Receipt,
+  Share2,
   Sparkles,
-  Target,
-  TrendingUp,
+  Users,
   Wallet,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -15,33 +15,33 @@ import { Link } from "react-router-dom";
 const features = [
   {
     icon: Wallet,
-    titleKey: "home.features.trackTitle",
-    descriptionKey: "home.features.trackDescription",
+    titleKey: "home.features.incomeTitle",
+    descriptionKey: "home.features.incomeDescription",
   },
   {
-    icon: PiggyBank,
-    titleKey: "home.features.budgetTitle",
-    descriptionKey: "home.features.budgetDescription",
+    icon: Receipt,
+    titleKey: "home.features.expensesTitle",
+    descriptionKey: "home.features.expensesDescription",
   },
   {
-    icon: Target,
-    titleKey: "home.features.goalsTitle",
-    descriptionKey: "home.features.goalsDescription",
+    icon: FileUp,
+    titleKey: "home.features.importTitle",
+    descriptionKey: "home.features.importDescription",
   },
   {
-    icon: TrendingUp,
-    titleKey: "home.features.reportsTitle",
-    descriptionKey: "home.features.reportsDescription",
+    icon: Users,
+    titleKey: "home.features.splitTitle",
+    descriptionKey: "home.features.splitDescription",
   },
   {
-    icon: Bell,
-    titleKey: "home.features.alertsTitle",
-    descriptionKey: "home.features.alertsDescription",
+    icon: Share2,
+    titleKey: "home.features.shareTitle",
+    descriptionKey: "home.features.shareDescription",
   },
   {
-    icon: ShieldCheck,
-    titleKey: "home.features.securityTitle",
-    descriptionKey: "home.features.securityDescription",
+    icon: FileSpreadsheet,
+    titleKey: "home.features.exportTitle",
+    descriptionKey: "home.features.exportDescription",
   },
 ];
 

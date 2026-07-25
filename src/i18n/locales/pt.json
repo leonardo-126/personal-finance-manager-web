@@ -1,29 +1,29 @@
 ﻿{
     "home":  {
-                 "badge":  "Sua vida financeira sob controle",
-                 "title":  "Organize suas finanças e conquiste seus objetivos",
-                 "description":  "Acompanhe receitas e despesas, crie orçamentos e visualize para onde seu dinheiro vai. Tudo em um só lugar, de forma simples e segura.",
+                 "badge":  "Feito para o dia a dia do seu dinheiro",
+                 "title":  "Controle suas finanças e divida a fatura sem dor de cabeça",
+                 "description":  "Registre rendas e gastos, organize o dinheiro em caixas e importe a fatura do cartão em segundos. Depois é só dividir cada compra entre as pessoas certas — tudo em um só lugar.",
                  "ctaPrimary":  "Comece de graça",
                  "ctaSecondary":  "Já tenho conta",
                  "features":  {
                                   "title":  "Tudo o que você precisa para cuidar do seu dinheiro",
-                                  "subtitle":  "Uma plataforma completa construída em torno de como você realmente lida com suas finanças.",
-                                  "trackTitle":  "Controle de gastos",
-                                  "trackDescription":  "Registre receitas e despesas e saiba exatamente para onde vai cada centavo.",
-                                  "budgetTitle":  "Orçamentos inteligentes",
-                                  "budgetDescription":  "Defina limites por categoria e evite gastar mais do que planejou.",
-                                  "goalsTitle":  "Metas financeiras",
-                                  "goalsDescription":  "Crie objetivos de poupança e acompanhe seu progresso até alcançá-los.",
-                                  "reportsTitle":  "Relatórios e insights",
-                                  "reportsDescription":  "Visualize gráficos claros sobre seus hábitos e tome decisões melhores.",
-                                  "alertsTitle":  "Alertas e lembretes",
-                                  "alertsDescription":  "Receba avisos de contas a vencer e quando ultrapassar seu orçamento.",
-                                  "securityTitle":  "Segurança em primeiro lugar",
-                                  "securityDescription":  "Seus dados protegidos com criptografia e os mais altos padrões de segurança."
+                                  "subtitle":  "Construído em torno de como você realmente lida com suas finanças no dia a dia.",
+                                  "incomeTitle":  "Rendas e caixas",
+                                  "incomeDescription":  "Cadastre suas fontes de renda e organize o dinheiro em caixas, com movimentações de entrada e saída.",
+                                  "expensesTitle":  "Gastos organizados",
+                                  "expensesDescription":  "Registre despesas por categoria, item a item, e saiba exatamente para onde vai cada centavo.",
+                                  "importTitle":  "Fatura em segundos",
+                                  "importDescription":  "Importe a fatura do cartão Nubank e transforme cada transação em um gasto pronto para dividir.",
+                                  "splitTitle":  "Divisão por pessoa",
+                                  "splitDescription":  "Atribua cada item da fatura à pessoa certa e veja quanto cada um deve, sem planilhas.",
+                                  "shareTitle":  "Compartilhe por link",
+                                  "shareDescription":  "Envie um link único para cada pessoa marcar o que é dela — sem precisar criar conta.",
+                                  "exportTitle":  "Exporte quando quiser",
+                                  "exportDescription":  "Baixe seus gastos e faturas em Excel a qualquer momento para guardar ou analisar."
                               },
                  "cta":  {
-                             "title":  "Pronto para assumir o controle?",
-                             "description":  "Organize sua vida financeira e dê o primeiro passo para realizar seus objetivos.",
+                             "title":  "Pronto para organizar suas finanças?",
+                             "description":  "Crie sua conta gratuita e comece a controlar rendas, gastos e faturas hoje mesmo.",
                              "button":  "Criar conta gratuita"
                          }
              },
