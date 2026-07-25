@@ -13,7 +13,6 @@ import {
   ListChecks,
   CreditCard,
   Users,
-  Settings,
   User,
   LogOut,
   type LucideIcon,
@@ -57,7 +56,6 @@ const navGroups: NavGroup[] = [
     labelKey: "sidebar.groups.account",
     items: [
       { key: "sidebar.profile", href: "/dashboard/profile", icon: User },
-      { key: "sidebar.settings", href: "/dashboard/settings", icon: Settings },
     ],
   },
 ];

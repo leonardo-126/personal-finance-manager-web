@@ -14,7 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useAuth } from "@/context/AuthContext";
-import { LogOut, Menu, PiggyBank, Settings, User } from "lucide-react";
+import { LogOut, Menu, PiggyBank, User } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
@@ -100,15 +100,6 @@ export default function AuthNavbar() {
                 >
                   <User className="h-4 w-4" />
                   {t("authNavbar.profile")}
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link
-                  to="/dashboard/settings"
-                  className="flex items-center gap-2"
-                >
-                  <Settings className="h-4 w-4" />
-                  {t("authNavbar.settings")}
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
