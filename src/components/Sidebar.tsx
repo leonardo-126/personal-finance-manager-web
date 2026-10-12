@@ -13,6 +13,7 @@ import {
   ListChecks,
   CreditCard,
   Users,
+  Landmark,
   User,
   LogOut,
   type LucideIcon,
@@ -50,6 +51,7 @@ const navGroups: NavGroup[] = [
     items: [
       { key: "sidebar.caixas", href: "/dashboard/caixas", icon: PiggyBank },
       { key: "sidebar.movimentacoes", href: "/dashboard/movimentacoes", icon: ArrowLeftRight },
+      { key: "sidebar.openFinance", href: "/dashboard/open-finance", icon: Landmark },
     ],
   },
   {

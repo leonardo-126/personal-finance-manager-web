@@ -54,6 +54,7 @@
                     "rendas":  "Rendas",
                     "caixas":  "Caixas Financeiras",
                     "movimentacoes":  "Movimentações",
+                "openFinance":  "Bancos conectados",
                     "categoriasGastos":  "Categorias de Gastos",
                     "gastos":  "Gastos",
                     "gastosItens":  "Itens de Gastos",
@@ -511,5 +512,77 @@
                                  "marcar":  "Marcar \"{{nome}}\" como meu",
                                  "de":  "de {{nome}}",
                                  "rodape":  "Suas marcações são salvas automaticamente."
-                             }
+                             },
+    "openFinance":  {
+        "title": "Bancos conectados",
+        "subtitle": "Conecte suas contas via Open Finance e importe as transações sem planilhas.",
+        "empty": "Nenhum banco conectado ainda. Conecte uma conta ou cartão para receber as transações automaticamente.",
+        "connect": "Conectar banco",
+        "reconnect": "Reconectar",
+        "opening": "Abrindo...",
+        "connectError": "Não foi possível conectar ao banco. Tente novamente.",
+        "loadError": "Não foi possível carregar as conexões.",
+        "syncError": "Não foi possível sincronizar agora. Tente novamente em instantes.",
+        "caixaError": "Não foi possível vincular o caixa.",
+        "sync": "Sincronizar agora",
+        "remove": "Desconectar",
+        "removeConfirm": "Desconectar este banco? As transações ainda não importadas serão apagadas; as faturas já importadas continuam.",
+        "instituicao": "Instituição",
+        "lastSync": "Atualizado em {{date}}",
+        "neverSynced": "Sincronizando pela primeira vez...",
+        "consentExpires": "Consentimento até {{date}}",
+        "saldo": "Saldo",
+        "fatura": "Fatura atual",
+        "caixaVinculado": "Caixa vinculado",
+        "semCaixa": "Sem caixa",
+        "review_one": "Revisar {{count}}",
+        "review_other": "Revisar {{count}}",
+        "viewTransactions": "Transações",
+        "status": {
+            "ativa": "Conectado",
+            "atualizando": "Atualizando",
+            "erro_login": "Erro de login",
+            "desatualizada": "Desatualizado",
+            "aguardando_usuario": "Ação necessária"
+        },
+        "tipo": {
+            "corrente": "Conta corrente",
+            "poupanca": "Poupança",
+            "cartao": "Cartão de crédito",
+            "outra": "Conta"
+        },
+        "conta": {
+            "title": "Transações",
+            "subtitle": "Revise o que veio do banco antes de importar.",
+            "voltar": "Voltar para bancos conectados",
+            "notFound": "Conta não encontrada.",
+            "loadTxError": "Não foi possível carregar as transações.",
+            "updateError": "Não foi possível atualizar a transação.",
+            "importError": "Não foi possível importar as transações.",
+            "somenteCartao": "Por enquanto, só transações de cartão de crédito podem ser importadas como fatura. Aqui você pode revisar e ignorar as transações desta conta.",
+            "abas": {
+                "pendente": "Pendentes",
+                "ignorada": "Ignoradas",
+                "importada": "Importadas"
+            },
+            "empty": {
+                "pendente": "Nenhuma transação pendente. Tudo em dia!",
+                "ignorada": "Nenhuma transação ignorada.",
+                "importada": "Nenhuma transação importada ainda."
+            },
+            "count_one": "{{count}} transação",
+            "count_other": "{{count}} transações",
+            "selectAll": "Selecionar todas",
+            "naoConfirmada": "Ainda não confirmada pelo banco",
+            "ignorar": "Ignorar",
+            "restaurar": "Voltar para pendentes",
+            "loadMore": "Carregar mais",
+            "selected_one": "{{count}} selecionada",
+            "selected_other": "{{count}} selecionadas",
+            "descricaoPlaceholder": "Fatura {{nome}}",
+            "import": "Importar como fatura",
+            "success_one": "{{count}} transação importada:",
+            "success_other": "{{count}} transações importadas:"
+        }
+    }
 }

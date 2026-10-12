@@ -28,6 +28,15 @@ import type {
   FaturaPreview,
   ImportarFaturaInput,
 } from "@/types/fatura";
+import type {
+  ConexaoOpenFinance,
+  ConnectToken,
+  ContaOpenFinance,
+  ImportarTransacoesInput,
+  PaginaTransacoes,
+  StatusTransacao,
+  TransacaoOpenFinance,
+} from "@/types/open-finance";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL as string;
 const SERVER_URL = API_BASE.replace(/\/api\/?$/, "");
@@ -253,6 +262,74 @@ export const faturaPublicaService = {
       .patch<Wrapped<GastoItem>>(
         `/fatura-compartilhada/${token}/itens/${itemId}`,
         { meu },
+      )
+      .then(unwrap),
+};
+
+/**
+ * Open Finance: conexões com bancos via agregador (Pluggy) e conciliação
+ * das transações recebidas antes de virarem gastos.
+ */
+export const openFinanceService = {
+  /** Token para abrir o widget do agregador; com conexaoId, reautoriza uma conexão. */
+  connectToken: (conexaoId?: number) =>
+    api
+      .post<Wrapped<ConnectToken>>("/open-finance/connect-token", {
+        conexao_id: conexaoId ?? null,
+      })
+      .then(unwrap),
+
+  listConexoes: () =>
+    api.get<Wrapped<ConexaoOpenFinance[]>>("/open-finance/conexoes").then(unwrap),
+
+  /** Registra a conexão criada pelo widget e agenda o primeiro sync. */
+  registrarConexao: (externalId: string) =>
+    api
+      .post<Wrapped<ConexaoOpenFinance>>("/open-finance/conexoes", {
+        external_id: externalId,
+      })
+      .then(unwrap),
+
+  sincronizar: (id: number) =>
+    api.post<void>(`/open-finance/conexoes/${id}/sincronizar`),
+
+  removerConexao: (id: number) => api.del<void>(`/open-finance/conexoes/${id}`),
+
+  /** Vincula (ou desvincula, com null) a conta a um caixa. */
+  vincularCaixa: (contaId: number, caixaId: number | null) =>
+    api
+      .patch<Wrapped<ContaOpenFinance>>(`/open-finance/contas/${contaId}`, {
+        caixa_id: caixaId,
+      })
+      .then(unwrap),
+
+  listTransacoes: (params: {
+    conta_id: number;
+    status: StatusTransacao;
+    page?: number;
+  }) => {
+    const query = new URLSearchParams({
+      conta_id: String(params.conta_id),
+      status: params.status,
+      page: String(params.page ?? 1),
+    });
+    return api.get<PaginaTransacoes>(`/open-finance/transacoes?${query}`);
+  },
+
+  /** Ignora uma transação ou volta ela para pendente. */
+  atualizarTransacao: (id: number, status: "pendente" | "ignorada") =>
+    api
+      .patch<Wrapped<TransacaoOpenFinance>>(`/open-finance/transacoes/${id}`, {
+        status,
+      })
+      .then(unwrap),
+
+  /** Cria uma fatura a partir das transações selecionadas de um cartão. */
+  importarFatura: (contaId: number, input: ImportarTransacoesInput) =>
+    api
+      .post<Wrapped<FaturaImportada>>(
+        `/open-finance/contas/${contaId}/importar-fatura`,
+        input,
       )
       .then(unwrap),
 };
