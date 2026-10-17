@@ -70,6 +70,7 @@ const syncConcluido = (conexoes: ConexaoOpenFinance[], aguardando: Aguardando) =
   conexoes.every(
     (c) =>
       precisaReconectar(c.status) ||
+      c.erro !== null ||
       (c.status !== "atualizando" &&
         c.ultimo_sync_em !== null &&
         c.ultimo_sync_em !== aguardando.syncAnterior[c.id]),
@@ -116,7 +117,10 @@ export default function OpenFinance() {
   // O sync roda na fila: enquanto algo está pendente, recarrega a lista periodicamente.
   const sincronizando =
     aguardando !== null ||
-    conexoes.some((c) => c.status === "atualizando" || !c.ultimo_sync_em);
+    conexoes.some(
+      // Com erro registrado o sync desistiu: não adianta continuar consultando.
+      (c) => !c.erro && (c.status === "atualizando" || !c.ultimo_sync_em),
+    );
 
   useEffect(() => {
     if (!sincronizando) return;
@@ -256,7 +260,9 @@ export default function OpenFinance() {
                             ? t("openFinance.lastSync", {
                                 date: formatDate(conexao.ultimo_sync_em),
                               })
-                            : t("openFinance.neverSynced")}
+                            : conexao.erro
+                              ? t("openFinance.notSynced")
+                              : t("openFinance.neverSynced")}
                         </span>
                         {conexao.consentimento_expira_em && (
                           <span>
@@ -306,7 +312,7 @@ export default function OpenFinance() {
                   </div>
                 </div>
 
-                {conexao.erro && precisaReconectar(conexao.status) && (
+                {conexao.erro && (
                   <p className="mt-3 text-sm text-destructive">{conexao.erro}</p>
                 )}
 

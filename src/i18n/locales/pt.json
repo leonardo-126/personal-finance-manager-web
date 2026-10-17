@@ -530,6 +530,7 @@
         "instituicao": "Instituição",
         "lastSync": "Atualizado em {{date}}",
         "neverSynced": "Sincronizando pela primeira vez...",
+        "notSynced": "Ainda não sincronizado",
         "consentExpires": "Consentimento até {{date}}",
         "saldo": "Saldo",
         "fatura": "Fatura atual",
