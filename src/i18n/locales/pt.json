@@ -552,6 +552,28 @@
             "cartao": "Cartão de crédito",
             "outra": "Conta"
         },
+        "lancamentos": {
+            "dica": "Saídas viram gastos e entradas viram rendas. Ignore o pagamento da fatura do cartão e as transferências entre suas próprias contas, para não contar o mesmo dinheiro duas vezes.",
+            "selecione": "Selecione as transações que deseja importar.",
+            "saidas_one": "{{count}} saída",
+            "saidas_other": "{{count}} saídas",
+            "entradas_one": "{{count}} entrada",
+            "entradas_other": "{{count}} entradas",
+            "categoria": "Categoria dos gastos",
+            "fonte": "Fonte das entradas",
+            "fontePlaceholder": "Selecione a fonte de renda",
+            "noFontes": "Cadastre uma fonte de renda antes de importar entradas.",
+            "hint": "Cada transação vira um registro separado, com a data e a descrição do banco. Importe em lotes para usar categorias diferentes.",
+            "import": "Importar lançamentos",
+            "success": "Importado: {{itens}}.",
+            "e": " e ",
+            "gastos_one": "{{count}} gasto",
+            "gastos_other": "{{count}} gastos",
+            "rendas_one": "{{count}} renda",
+            "rendas_other": "{{count}} rendas",
+            "verGastos": "Ver gastos",
+            "verRendas": "Ver rendas"
+        },
         "conta": {
             "title": "Transações",
             "subtitle": "Revise o que veio do banco antes de importar.",
@@ -560,7 +582,6 @@
             "loadTxError": "Não foi possível carregar as transações.",
             "updateError": "Não foi possível atualizar a transação.",
             "importError": "Não foi possível importar as transações.",
-            "somenteCartao": "Por enquanto, só transações de cartão de crédito podem ser importadas como fatura. Aqui você pode revisar e ignorar as transações desta conta.",
             "abas": {
                 "pendente": "Pendentes",
                 "ignorada": "Ignoradas",

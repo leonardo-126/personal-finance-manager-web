@@ -48,6 +48,8 @@ export interface TransacaoOpenFinance {
   confirmada: boolean;
   status: StatusTransacao;
   gasto_item_id: number | null;
+  gasto_id: number | null;
+  renda_id: number | null;
 }
 
 export interface ConnectToken {
@@ -65,4 +67,17 @@ export interface ImportarTransacoesInput {
   caixa_id?: number | null;
   categoria_id: number;
   descricao?: string | null;
+}
+
+/** Conta corrente: débitos viram gastos (categoria) e créditos viram rendas (fonte). */
+export interface ImportarLancamentosInput {
+  transacao_ids: number[];
+  caixa_id?: number | null;
+  categoria_id?: number | null;
+  fonte_renda_id?: number | null;
+}
+
+export interface ResultadoLancamentos {
+  gastos: number;
+  rendas: number;
 }

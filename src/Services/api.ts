@@ -32,8 +32,10 @@ import type {
   ConexaoOpenFinance,
   ConnectToken,
   ContaOpenFinance,
+  ImportarLancamentosInput,
   ImportarTransacoesInput,
   PaginaTransacoes,
+  ResultadoLancamentos,
   StatusTransacao,
   TransacaoOpenFinance,
 } from "@/types/open-finance";
@@ -329,6 +331,15 @@ export const openFinanceService = {
     api
       .post<Wrapped<FaturaImportada>>(
         `/open-finance/contas/${contaId}/importar-fatura`,
+        input,
+      )
+      .then(unwrap),
+
+  /** Conta corrente/poupança: cada débito vira um gasto e cada crédito uma renda. */
+  importarLancamentos: (contaId: number, input: ImportarLancamentosInput) =>
+    api
+      .post<Wrapped<ResultadoLancamentos>>(
+        `/open-finance/contas/${contaId}/importar-lancamentos`,
         input,
       )
       .then(unwrap),

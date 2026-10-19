@@ -20,13 +20,16 @@ import { cn } from "@/lib/utils";
 import {
   caixaService,
   categoriaGastoService,
+  fonteRendaService,
   openFinanceService,
 } from "@/Services/api";
 import type { CaixaFinanceira } from "@/types/caixa";
 import type { CategoriaGasto } from "@/types/categoria-gasto";
 import type { FaturaImportada } from "@/types/fatura";
+import type { FonteRenda } from "@/types/fonte-renda";
 import type {
   ContaOpenFinance,
+  ResultadoLancamentos,
   StatusTransacao,
   TransacaoOpenFinance,
 } from "@/types/open-finance";
@@ -41,12 +44,17 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import OpenFinanceLancamentos from "./OpenFinanceLancamentos";
 
 const ABAS: StatusTransacao[] = ["pendente", "ignorada", "importada"];
 
 /** Valor com sinal no formato das faturas: compra positiva, estorno negativo. */
 const valorAssinado = (tx: TransacaoOpenFinance) =>
   tx.tipo === "debito" ? Number(tx.valor) : -Number(tx.valor);
+
+/** Cartão segue o formato da fatura; conta corrente mostra entrada positiva e saída negativa. */
+const valorExibido = (tx: TransacaoOpenFinance, cartao: boolean) =>
+  cartao ? valorAssinado(tx) : -valorAssinado(tx);
 
 export default function OpenFinanceConta() {
   const { t } = useTranslation();
@@ -57,6 +65,7 @@ export default function OpenFinanceConta() {
   const [instituicao, setInstituicao] = useState<string | null>(null);
   const [caixas, setCaixas] = useState<CaixaFinanceira[]>([]);
   const [categorias, setCategorias] = useState<CategoriaGasto[]>([]);
+  const [fontes, setFontes] = useState<FonteRenda[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -72,9 +81,10 @@ export default function OpenFinanceConta() {
   const [descricao, setDescricao] = useState("");
   const [isImporting, setIsImporting] = useState(false);
   const [imported, setImported] = useState<FaturaImportada | null>(null);
+  const [lancamentos, setLancamentos] = useState<ResultadoLancamentos | null>(null);
 
   const isCartao = conta?.tipo === "cartao";
-  const podeSelecionar = isCartao && aba === "pendente";
+  const podeSelecionar = aba === "pendente";
 
   useEffect(() => {
     let cancelled = false;
@@ -83,9 +93,10 @@ export default function OpenFinanceConta() {
       openFinanceService.listConexoes(),
       caixaService.list(),
       categoriaGastoService.list(),
+      fonteRendaService.list(),
       openFinanceService.listTransacoes({ conta_id: contaId, status: "pendente" }),
     ])
-      .then(([conexoes, caixasData, categoriasData, pendentes]) => {
+      .then(([conexoes, caixasData, categoriasData, fontesData, pendentes]) => {
         if (cancelled) return;
         const conexao = conexoes.find((c) => c.contas.some((ct) => ct.id === contaId));
         const encontrada = conexao?.contas.find((ct) => ct.id === contaId) ?? null;
@@ -94,6 +105,7 @@ export default function OpenFinanceConta() {
         setCaixaId(encontrada?.caixa_id ? String(encontrada.caixa_id) : "");
         setCaixas(caixasData);
         setCategorias(categoriasData);
+        setFontes(fontesData.filter((f) => f.status === "ativo"));
         setTransacoes(pendentes.data);
         setPagina({
           atual: pendentes.meta.current_page,
@@ -227,6 +239,16 @@ export default function OpenFinanceConta() {
   const canImport =
     selecionadas.size > 0 && caixaId !== "" && categoriaId !== "" && !isImporting;
 
+  const handleLancamentosImportados = (resultado: ResultadoLancamentos, ids: number[]) => {
+    setError(null);
+    setLancamentos(resultado);
+    setTransacoes((prev) => prev.filter((tx) => !ids.includes(tx.id)));
+    setPagina((p) => ({ ...p, total: p.total - ids.length }));
+    setSelecionadas(new Set());
+  };
+
+  const transacoesSelecionadas = transacoes.filter((tx) => selecionadas.has(tx.id));
+
   return (
     <div className="mx-auto max-w-4xl">
       <header className="mb-6">
@@ -278,9 +300,43 @@ export default function OpenFinanceConta() {
             </Card>
           )}
 
-          {!isCartao && (
+          {lancamentos && (
+            <Card>
+              <CardContent className="flex flex-wrap items-center justify-between gap-3 p-4">
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-emerald-500" />
+                  <p className="text-sm">
+                    {t("openFinance.lancamentos.success", {
+                      itens: [
+                        lancamentos.gastos > 0 &&
+                          t("openFinance.lancamentos.gastos", { count: lancamentos.gastos }),
+                        lancamentos.rendas > 0 &&
+                          t("openFinance.lancamentos.rendas", { count: lancamentos.rendas }),
+                      ]
+                        .filter(Boolean)
+                        .join(t("openFinance.lancamentos.e")),
+                    })}
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  {lancamentos.gastos > 0 && (
+                    <Button size="sm" variant="outline" onClick={() => navigate("/dashboard/gastos")}>
+                      {t("openFinance.lancamentos.verGastos")}
+                    </Button>
+                  )}
+                  {lancamentos.rendas > 0 && (
+                    <Button size="sm" variant="outline" onClick={() => navigate("/dashboard/rendas")}>
+                      {t("openFinance.lancamentos.verRendas")}
+                    </Button>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {!isCartao && aba === "pendente" && transacoes.length > 0 && (
             <p className="rounded-md border border-dashed p-3 text-sm text-muted-foreground">
-              {t("openFinance.conta.somenteCartao")}
+              {t("openFinance.lancamentos.dica")}
             </p>
           )}
 
@@ -346,7 +402,7 @@ export default function OpenFinanceConta() {
                       </thead>
                       <tbody>
                         {transacoes.map((tx) => {
-                          const valor = valorAssinado(tx);
+                          const valor = valorExibido(tx, isCartao);
                           return (
                             <tr
                               key={tx.id}
@@ -383,7 +439,7 @@ export default function OpenFinanceConta() {
                               <td
                                 className={cn(
                                   "whitespace-nowrap px-3 py-2 text-right font-medium",
-                                  valor < 0 && "text-emerald-600",
+                                  tx.tipo === "credito" && "text-emerald-600",
                                 )}
                               >
                                 {formatCurrency(valor)}
@@ -437,7 +493,19 @@ export default function OpenFinanceConta() {
             </CardContent>
           </Card>
 
-          {podeSelecionar && transacoes.length > 0 && (
+          {podeSelecionar && !isCartao && transacoes.length > 0 && (
+            <OpenFinanceLancamentos
+              conta={conta}
+              selecionadas={transacoesSelecionadas}
+              caixas={caixas}
+              categorias={categorias}
+              fontes={fontes}
+              onImported={handleLancamentosImportados}
+              onError={setError}
+            />
+          )}
+
+          {podeSelecionar && isCartao && transacoes.length > 0 && (
             <Card>
               <CardContent className="p-4">
                 <div className="mb-4 flex items-center justify-between">
